@@ -1,8 +1,22 @@
 # Architecture
 
-This document describes a technology-neutral shape for the game. All
-technology-specific choices are **TBD** until the team completes the stack
-decision.
+The initial prototype is a browser app: React, TypeScript, and Vite, with
+plain CSS and `useReducer`. There is no backend or dedicated game engine.
+
+| Concern | Module |
+| --- | --- |
+| Scenario content | `src/game/scenarios.ts` |
+| Scoring and progression rules | `src/game/rules.ts` |
+| Playthrough state | `src/game/types.ts`, `initialState.ts`, `reducer.ts` |
+| Reusable interface | `src/components/` |
+| Start, play, and results flow | `src/screens/` |
+| Visual styling | `src/styles/` |
+| Rule tests | `src/tests/` |
+| Runtime art | `public/assets/` |
+
+These source files are structural placeholders. Gameplay is not implemented
+yet. One play screen should host every scenario; do not add a screen per
+event.
 
 ## Potential systems
 
@@ -56,6 +70,7 @@ stored data should be minimized and documented.
 
 ## Boundaries and future decisions
 
-The team should agree on data formats, system interfaces, content workflow,
-testing strategy, and deployment approach after selecting a technology stack.
-No engine, language, framework, database, or hosting service is selected yet.
+Data formats for scenario content, the exact scoring values, and whether
+progress is saved are still open. The prototype has no database. Game-logic
+tests belong in `src/tests/` and run with Vitest. Deployment beyond a local
+Vite build is not decided.

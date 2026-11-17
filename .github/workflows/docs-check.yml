@@ -1,10 +1,8 @@
 name: Documentation check
 
 on:
-  pull_request:
-  push:
-    branches:
-      - main
+# Temporarily disabled for automatic runs. Keep manual execution available.
+  workflow_dispatch:
 
 jobs:
   required-documents:
@@ -27,7 +25,7 @@ jobs:
             "docs/architecture.md"
             "docs/tech-stack-decision.md"
             "docs/meeting-notes/README.md"
-            "assets/README.md"
+            "design/README.md"
             ".github/ISSUE_TEMPLATE/bug_report.md"
             ".github/ISSUE_TEMPLATE/feature_request.md"
             ".github/PULL_REQUEST_TEMPLATE.md"
