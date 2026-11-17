@@ -31,15 +31,18 @@ Planned areas include:
 
 ## Project status
 
-**Planning / Pre-development**
+**Prototype structure**
 
-This repository contains planning materials only. No game engine, programming
-language, or production technology has been selected.
+The playable prototype is scaffolded and gameplay is not implemented yet.
+Scenario data, rules, state, and React screens are separate modules under
+`src/`.
 
 ## Technology stack
 
-**To Be Decided.** The team is evaluating Unity, Godot, and web-based
-approaches. See the [technology decision record](docs/tech-stack-decision.md).
+The initial prototype uses React, TypeScript, and Vite, with plain CSS,
+`useReducer` for game state, and Vitest for game-logic tests. There is no
+backend, database, or dedicated game engine. See the
+[technology decision record](docs/tech-stack-decision.md).
 
 ## Team collaboration
 
@@ -54,4 +57,16 @@ workflow.
 - [Architecture](docs/architecture.md)
 - [Technology Stack Decision](docs/tech-stack-decision.md)
 - [Meeting Notes Template](docs/meeting-notes/README.md)
-- [Asset Organization](assets/README.md)
+- [Design References](design/README.md)
+
+## Prototype layout
+
+Runtime art is served from `public/assets/`. Vite and the TypeScript project configs live in `config/`. `package.json`, `index.html`, and the root `tsconfig.json` stay at the repository root because npm, Vite, and the editor look for them there.
+
+Source modules:
+
+- `src/components/` — reusable HUD, goals, decisions, dialogue, and feedback
+- `src/screens/` — start, play, and results
+- `src/game/` — types, initial state, rules, reducer, and scenario data
+- `src/styles/` — global, pixel UI, and animation styles
+- `src/tests/` — Vitest tests for game logic

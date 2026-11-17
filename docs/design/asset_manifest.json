@@ -1,0 +1,95 @@
+{
+  "project": "Eco Journey",
+  "assets": [
+    {
+      "path": "public/assets/ui/ui_components_sheet.png",
+      "width": 1448,
+      "height": 1086,
+      "format": "PNG",
+      "mode": "RGBA",
+      "alpha": true,
+      "file_size_bytes": 1824254
+    },
+    {
+      "path": "public/assets/backgrounds/morning.png",
+      "width": 1672,
+      "height": 941,
+      "format": "PNG",
+      "mode": "RGB",
+      "alpha": false,
+      "file_size_bytes": 2340704
+    },
+    {
+      "path": "public/assets/backgrounds/afternoon.png",
+      "width": 1672,
+      "height": 941,
+      "format": "PNG",
+      "mode": "RGB",
+      "alpha": false,
+      "file_size_bytes": 2367940
+    },
+    {
+      "path": "public/assets/backgrounds/evening.png",
+      "width": 1672,
+      "height": 941,
+      "format": "PNG",
+      "mode": "RGB",
+      "alpha": false,
+      "file_size_bytes": 2536040
+    },
+    {
+      "path": "public/assets/icons/resource_action_icons_sheet.png",
+      "width": 1448,
+      "height": 1086,
+      "format": "PNG",
+      "mode": "RGBA",
+      "alpha": true,
+      "file_size_bytes": 1363455
+    },
+    {
+      "path": "public/assets/characters/student_and_supporting_portraits_sheet.png",
+      "width": 1448,
+      "height": 1086,
+      "format": "PNG",
+      "mode": "RGBA",
+      "alpha": true,
+      "file_size_bytes": 1508301
+    },
+    {
+      "path": "public/assets/props/scenario_props_sheet.png",
+      "width": 1448,
+      "height": 1086,
+      "format": "PNG",
+      "mode": "RGBA",
+      "alpha": true,
+      "file_size_bytes": 1788981
+    },
+    {
+      "path": "public/assets/effects/animation_elements_sheet.png",
+      "width": 1448,
+      "height": 1086,
+      "format": "PNG",
+      "mode": "RGBA",
+      "alpha": true,
+      "file_size_bytes": 2008506
+    },
+    {
+      "path": "design/references/"ui_kit_concept.png",
+      "width": 1448,
+      "height": 1086,
+      "format": "PNG",
+      "mode": "RGB",
+      "alpha": false,
+      "file_size_bytes": 2255453
+    },
+    {
+      "path": "design/references/"environment_direction_concept.png",
+      "width": 1448,
+      "height": 1086,
+      "format": "PNG",
+      "mode": "RGB",
+      "alpha": false,
+      "file_size_bytes": 2610537
+    }
+  ]
+}

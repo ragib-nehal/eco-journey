@@ -2,7 +2,8 @@
 
 ## Status
 
-**Pending** — no option has been selected.
+**Selected for the initial prototype** — React + TypeScript without a
+dedicated game engine, built with Vite.
 
 ## Context
 
@@ -37,10 +38,22 @@ the same assumptions and records evidence.
 
 ## Decision
 
-**Pending.** The team should document the chosen option, important trade-offs,
-and any conditions or review date before implementation begins.
+The initial playable prototype uses:
 
-## Consequences to consider
+- React + TypeScript + Vite
+- Plain CSS for styling and animation
+- React `useReducer` for playthrough state
+- Vitest for game-logic tests
+- No backend, database, or dedicated game engine
 
-The decision will affect contributor onboarding, content authoring, supported
-platforms, automated checks, and how the game is packaged and tested.
+Scenario content, scoring rules, state transitions, and React presentation
+stay in separate modules. The comparison table above is still unscored
+research context; this decision is the stack for the prototype, not a scored
+evaluation of Unity or Godot.
+
+## Consequences
+
+Contributors need a current Node.js toolchain. The game runs in the browser.
+Rules can be tested without rendering. Art in `public/assets/` is served as
+static files. Persistence, packaging beyond the Vite build, and any later
+engine change remain open.
