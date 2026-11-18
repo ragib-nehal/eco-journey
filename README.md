@@ -60,6 +60,11 @@ the results screen). Scores and the player name live only in the browser's
 `localStorage`; nothing is sent to a server, and clearing site data removes
 them.
 
+`npm ci` may report a few vulnerabilities in `picomatch`. They are in the
+development tools (Vite and Vitest), not in the game that players load, and npm
+has no patched version yet. Do not run `npm audit fix --force`: it upgrades
+packages across breaking versions and can stop the project from running.
+
 On Windows, run the commands from a path that starts with an upper-case drive
 letter (`C:\...`). Some terminals open the project as `c:\...`, which makes
 Vitest load itself twice and fail with
