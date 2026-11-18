@@ -31,11 +31,53 @@ Planned areas include:
 
 ## Project status
 
-**Prototype structure**
+**Playable one-day MVP with pixel-art graphics**
 
-The playable prototype is scaffolded and gameplay is not implemented yet.
-Scenario data, rules, state, and React screens are separate modules under
-`src/`.
+The full one-day loop is implemented: 14 scheduled events, 4 conditional
+follow-ups, three goal checkpoints, money/energy limits, educational feedback,
+and an end-of-day report with raw Carbon, Water, and Waste totals and a
+relative Eco Score. Scenario data, rules, state, and React screens are separate
+modules under `src/`. Most feedback explanations are draft copy awaiting
+content and source review (see the header of `src/game/scenarios.ts`).
+
+## Running the game
+
+Requires Node.js 20.19+ or 22.12+.
+
+```bash
+npm ci          # install the locked dependencies
+npm run dev     # start the dev server, then open the printed address
+npm test        # run the game-logic tests
+npm run build   # type-check and build to dist/
+```
+
+Play with the mouse, touch, or keyboard: Tab moves between choices, 1–5 picks
+a choice, and Enter continues.
+
+On Windows, run the commands from a path that starts with an upper-case drive
+letter (`C:\...`). Some terminals open the project as `c:\...`, which makes
+Vitest load itself twice and fail with
+`Cannot read properties of undefined (reading 'config')`.
+
+## Pixel-art graphics
+
+The game draws a 320×180 pixel stage on a canvas and scales it up with
+nearest-neighbour sampling. The UI uses stepped pixel borders and the
+self-hosted Pixelify Sans font.
+
+The low-resolution art in `public/assets/pixel/` is generated from the
+illustrated assets in `public/assets/` by a dependency-free script:
+
+```bash
+npm run bake:pixel
+```
+
+The script downsamples and posterizes the backgrounds, slices icons and
+portraits from the sprite sheets, and draws the scenes the illustrated set
+does not cover (street, mall, rainy street) plus a few small sprites (cars,
+bags, hand dryer, paper towels, thermostat, charger) directly in code. The
+outputs are committed. Re-run the script after changing any source art or
+`scripts/pixel/drawn.mjs`.
 
 ## Technology stack
 
@@ -65,8 +107,15 @@ Runtime art is served from `public/assets/`. Vite and the TypeScript project con
 
 Source modules:
 
-- `src/components/` — reusable HUD, goals, decisions, dialogue, and feedback
+- `src/components/` — pixel stage, HUD, goals, decisions, dialogue, and feedback
 - `src/screens/` — start, play, and results
-- `src/game/` — types, initial state, rules, reducer, and scenario data
+- `src/game/` — types, initial state, rules, reducer, scenario data, report, and Eco Score
+- `src/ui/` — asset URLs and goal explanation text
 - `src/styles/` — global, pixel UI, and animation styles
 - `src/tests/` — Vitest tests for game logic
+- `scripts/` — the pixel-art bake script
+
+## Credits
+
+- Pixelify Sans font: SIL Open Font License 1.1, self-hosted from Google Fonts
+  (`public/fonts/`).
