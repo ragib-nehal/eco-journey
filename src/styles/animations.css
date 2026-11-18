@@ -1,0 +1,96 @@
+/* Stepped (frame-by-frame) animations to match the pixel-art look. */
+
+.popup {
+  position: absolute;
+  top: -18px;
+  right: -12px;
+  padding: 0 4px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #fff;
+  pointer-events: none;
+  box-shadow: 0 0 0 2px #0f0c1d;
+  animation: popup-rise 1.6s steps(8) forwards;
+}
+
+.popup--up {
+  background: var(--sky);
+}
+
+.popup--down {
+  background: var(--coral);
+}
+
+@keyframes popup-rise {
+  0% {
+    transform: translateY(6px);
+    opacity: 0;
+  }
+  15% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-14px);
+    opacity: 0;
+  }
+}
+
+.choice,
+.feedback,
+.checkpoint__status {
+  animation: pop-in 240ms steps(4) both;
+}
+
+.choice:nth-child(2) {
+  animation-delay: 40ms;
+}
+
+.choice:nth-child(3) {
+  animation-delay: 80ms;
+}
+
+.choice:nth-child(4) {
+  animation-delay: 120ms;
+}
+
+.choice:nth-child(5) {
+  animation-delay: 160ms;
+}
+
+@keyframes pop-in {
+  from {
+    transform: translateY(8px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+.dialogue__body > p:last-child::after {
+  animation: blink 1s steps(2) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .popup {
+    opacity: 1;
+  }
+}

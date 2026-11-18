@@ -13,6 +13,12 @@ are not part of the running game.
 - `props/` — `scenario_props_sheet.png`, scenario objects such as the shower, bottle, bike, bus, food, bins, dishes, and laundry.
 - `effects/` — `animation_elements_sheet.png`, frame concepts for arrows, sparkles, rain, steam, popups, confirmation, and leaves.
 
+- `pixel/` — generated low-resolution pixel art used by the game: `scenes/` (320×180), `sprites/` (about 24 px), and `portraits/` (48 px tall). Do not edit these by hand; run `npm run bake:pixel` (see `scripts/bake-pixel-art.mjs`).
+
+## Fonts (`public/fonts/`)
+
+- `PixelifySans-latin.woff2` — Pixelify Sans, SIL Open Font License 1.1, downloaded from Google Fonts.
+
 ## Reference only (`design/`)
 
 - `references/` — inspirational design boards (`ui_kit_concept.png`, `environment_direction_concept.png`). These are not runtime sprites.

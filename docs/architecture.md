@@ -14,9 +14,9 @@ plain CSS and `useReducer`. There is no backend or dedicated game engine.
 | Rule tests | `src/tests/` |
 | Runtime art | `public/assets/` |
 
-These source files are structural placeholders. Gameplay is not implemented
-yet. One play screen should host every scenario; do not add a screen per
-event.
+The one-day MVP is implemented. One play screen hosts every scenario; do not
+add a screen per event. The pixel stage (`src/components/PixelStage.tsx`) is
+presentation only and never changes game rules.
 
 ## Potential systems
 
