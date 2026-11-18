@@ -1,6 +1,7 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { PixelStage } from '../components/PixelStage.tsx'
 import { PixelSprite } from '../components/PixelSprite.tsx'
+import { loadScores } from '../game/highScores.ts'
 import { GOALS, GOAL_ORDER } from '../game/initialState.ts'
 
 interface StartScreenProps {
@@ -18,6 +19,7 @@ const RESOURCES = [
 
 export function StartScreen({ onStart }: StartScreenProps) {
   const startRef = useRef<HTMLButtonElement>(null)
+  const [best] = useState(() => loadScores()[0] ?? null)
   useEffect(() => {
     startRef.current?.focus({ preventScroll: true })
   }, [])
@@ -41,6 +43,12 @@ export function StartScreen({ onStart }: StartScreenProps) {
           Start the day <span aria-hidden="true">▶</span>
         </button>
         <p className="note">Mouse, touch, or keyboard: Tab to move, 1–5 to choose, Enter to continue.</p>
+        {best && best.ecoScore !== null && (
+          <p className="start__best">
+            <PixelSprite name="check" scale={1} /> Your best Eco Score: <strong>{best.ecoScore}/100</strong> ({best.name}).
+            Can you beat it?
+          </p>
+        )}
       </section>
 
       <div className="start__grid">

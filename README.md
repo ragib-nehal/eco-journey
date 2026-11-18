@@ -53,6 +53,12 @@ npm run build   # type-check and build to dist/
 
 Play with the mouse, touch, or keyboard: Tab moves between choices, 1–5 picks
 a choice, and Enter continues.
+Click a dialogue line to skip its typing animation.
+
+Each finished day is saved to a local top-10 leaderboard ("Your best days" on
+the results screen). Scores and the player name live only in the browser's
+`localStorage`; nothing is sent to a server, and clearing site data removes
+them.
 
 On Windows, run the commands from a path that starts with an upper-case drive
 letter (`C:\...`). Some terminals open the project as `c:\...`, which makes

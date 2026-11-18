@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef } from 'react'
+import { HighScoresPanel } from '../components/HighScoresPanel.tsx'
 import { PixelStage } from '../components/PixelStage.tsx'
 import { PixelSprite } from '../components/PixelSprite.tsx'
 import { METRICS, type Metric } from '../game/ecoScore.ts'
@@ -102,6 +103,8 @@ export function ResultsScreen({ state, onRestart }: ResultsScreenProps) {
           </div>
         </div>
       </section>
+
+      <HighScoresPanel report={report} />
 
       <div className="results__grid">
         <section className="px-panel" aria-labelledby="r-high">
