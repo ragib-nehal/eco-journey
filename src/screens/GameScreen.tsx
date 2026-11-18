@@ -6,6 +6,7 @@ import { GoalTracker } from '../components/GoalTracker.tsx'
 import { PixelStage, type Ambience } from '../components/PixelStage.tsx'
 import { PixelSprite } from '../components/PixelSprite.tsx'
 import { StatusBar } from '../components/StatusBar.tsx'
+import { Typewriter } from '../components/Typewriter.tsx'
 import { GOALS } from '../game/initialState.ts'
 import { getOption, SCENARIOS } from '../game/scenarios.ts'
 import type { DecisionRecord, GameAction, GameState, SceneId } from '../game/types.ts'
@@ -67,7 +68,7 @@ export function GameScreen({ state, dispatch }: GameScreenProps) {
         <p className="checkpoint__status">
           <PixelSprite name={STATUS_SPRITE[status]} /> {STATUS_LABEL[status].toUpperCase()}
         </p>
-        <p>{goalExplanation(goal.id, state)}</p>
+        <Typewriter key={`checkpoint-${goal.id}`} text={goalExplanation(goal.id, state)} />
         {status === 'MISSED' && <p className="note">A missed goal never ends the day. Keep going!</p>}
       </DialogueBox>
     )
@@ -82,7 +83,7 @@ export function GameScreen({ state, dispatch }: GameScreenProps) {
     stageSprite = option.sprite
     dialogue = (
       <DialogueBox speaker="student" expression={reactionFor(last)} title={scenario.title}>
-        <p>{option.feedback.outcome}</p>
+        <Typewriter key={`feedback-${option.id}`} text={option.feedback.outcome} />
       </DialogueBox>
     )
     panel = <FeedbackPanel option={option} record={last} onContinue={proceed} />
@@ -94,7 +95,7 @@ export function GameScreen({ state, dispatch }: GameScreenProps) {
         expression="thinking"
         title={scenario.isFollowUp ? `${scenario.title} (follow-up)` : scenario.title}
       >
-        <p>{scenario.prompt}</p>
+        <Typewriter key={`prompt-${scenario.id}`} text={scenario.prompt} />
       </DialogueBox>
     )
     panel = <DecisionPanel state={state} scenario={scenario} onChoose={choose} onPreview={setPreview} />

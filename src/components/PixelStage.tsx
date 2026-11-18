@@ -4,6 +4,7 @@
 import { useEffect, useRef } from 'react'
 import type { SceneId } from '../game/types.ts'
 import { loadImage, sceneUrl, spriteUrl, STAGE_H, STAGE_W } from '../ui/assets.ts'
+import { prefersReducedMotion } from '../ui/motion.ts'
 
 export type Ambience = 'steam' | 'rain' | 'sparkle'
 
@@ -18,8 +19,6 @@ const INK = '#2a2238'
 const BAYER = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5]
 const FADE_MS = 360
 const FRAME_MS = 1000 / 12
-
-const prefersReducedMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false
 
 function drawBubble(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number) {
   ctx.fillStyle = INK
