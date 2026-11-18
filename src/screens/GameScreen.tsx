@@ -33,6 +33,7 @@ const SCENE_LABEL: Record<SceneId, string> = {
   mall: 'Shop fronts inside the mall',
   rain: 'A rainy street at dusk',
   evening: 'Home in the evening, rain on the windows',
+  store: 'Inside the corner store, at the checkout counter',
 }
 
 export function GameScreen({ state, dispatch }: GameScreenProps) {

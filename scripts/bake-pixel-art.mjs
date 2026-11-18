@@ -13,7 +13,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { createImage, decodePng, encodePng } from './pixel/png.mjs'
 import { crop, downsample, fit, inkEdges, isolateMain, posterize, trim, upscale } from './pixel/ops.mjs'
-import { STAGE_H, STAGE_W, drawMall, drawRainyStreet, drawStreet, drawnSprites } from './pixel/drawn.mjs'
+import { STAGE_H, STAGE_W, drawMall, drawRainyStreet, drawStore, drawStreet, drawnSprites } from './pixel/drawn.mjs'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const assets = join(root, 'public', 'assets')
@@ -36,6 +36,7 @@ for (const name of ['morning', 'afternoon', 'evening']) {
 save('scenes', 'street', drawStreet())
 save('scenes', 'mall', drawMall())
 save('scenes', 'rain', drawRainyStreet())
+save('scenes', 'store', drawStore())
 
 // --- Sprites from the icon sheet (6 x 5 grid) ----------------------------------
 const SPRITE_SIZE = 24

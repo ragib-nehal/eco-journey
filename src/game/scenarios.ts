@@ -153,7 +153,7 @@ const scenarioList: Scenario[] = [
   {
     id: 'bag',
     timeMin: time(7, 35),
-    scene: 'morning',
+    scene: 'store',
     title: 'Checkout bag',
     speaker: 'student',
     sprite: 'bag-paper',

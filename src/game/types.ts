@@ -25,7 +25,7 @@ export type ScenarioId =
   | 'bed'
 
 /** Pixel-art scene backgrounds baked into public/assets/pixel/scenes. */
-export type SceneId = 'morning' | 'street' | 'afternoon' | 'mall' | 'rain' | 'evening'
+export type SceneId = 'morning' | 'street' | 'afternoon' | 'mall' | 'rain' | 'evening' | 'store'
 
 export type Speaker = 'student' | 'friend' | 'dad' | 'mom'
 

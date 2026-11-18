@@ -343,3 +343,107 @@ export function drawRainyStreet() {
   for (const [px, py, w] of [[24, 168, 30], [130, 172, 40], [236, 166, 26]]) p.rect(px, py, w, 3, '#47456a')
   return p.image
 }
+
+/** Corner-store interior with a drinks fridge, snack shelves, and a cashier at the counter. */
+export function drawStore() {
+  const p = painter(STAGE_W, STAGE_H)
+  const rand = seeded(11)
+  // Ceiling with strip lights, then the back wall.
+  p.rect(0, 0, STAGE_W, 12, '#c9c2b4')
+  for (let lx = 10; lx < STAGE_W; lx += 52) {
+    p.rect(lx, 4, 30, 3, '#fffbe6')
+    p.rect(lx, 7, 30, 1, '#e3dccb')
+  }
+  p.gradient(0, 12, STAGE_W, 104, ['#f2eadb', '#e6dcc6'])
+  p.rect(0, 112, STAGE_W, 4, '#b9a68c')
+
+  // Drinks fridge (left) with two glass doors and rows of bottles.
+  p.rect(4, 22, 76, 94, '#5d6b7a')
+  p.rect(6, 24, 72, 8, '#3d7cc9')
+  p.rect(30, 26, 24, 4, '#ffffff')
+  const drinkColors = ['#e05a5a', '#5ab0e0', '#f0c040', '#7ac46a', '#f29bb6', '#ffffff']
+  for (const dx of [8, 44]) {
+    p.rect(dx, 34, 32, 80, '#bfe3ec')
+    for (let row = 0; row < 4; row++) {
+      const sy = 52 + row * 20
+      p.rect(dx, sy, 32, 2, '#8a9aa8')
+      for (let bx = dx + 2; bx < dx + 30; bx += 5) {
+        const c = drinkColors[Math.floor(rand() * drinkColors.length)]
+        p.rect(bx, sy - 11, 3, 11, c)
+        p.rect(bx + 1, sy - 13, 1, 2, '#e8e8f0')
+      }
+    }
+    p.rect(dx + 2, 36, 3, 70, '#e3f4f8')
+    p.rect(dx + 28, 70, 2, 12, '#3f4a5a')
+  }
+
+  // Low snack shelf (left of centre).
+  p.rect(84, 58, 34, 58, '#a07a58')
+  const snackColors = ['#e0735f', '#f0b43c', '#7a9cd6', '#8fbf7a', '#c76d8e', '#e9d27a']
+  for (let row = 0; row < 3; row++) {
+    const sy = 74 + row * 18
+    p.rect(84, sy, 34, 3, '#7a5a40')
+    for (let bx = 86; bx < 116; bx += 7) {
+      const c = snackColors[Math.floor(rand() * snackColors.length)]
+      p.rect(bx, sy - 12, 6, 12, c)
+      p.rect(bx + 1, sy - 9, 4, 3, '#fff8e7')
+    }
+  }
+
+  // Wall shelves behind the counter (right).
+  p.rect(204, 24, 112, 88, '#d8cbb2')
+  for (let row = 0; row < 4; row++) {
+    const sy = 40 + row * 18
+    p.rect(204, sy, 112, 3, '#8a6a4c')
+    for (let bx = 207; bx < 312; bx += 6) {
+      if (rand() < 0.2) continue
+      const c = snackColors[Math.floor(rand() * snackColors.length)]
+      const h = 8 + Math.floor(rand() * 6)
+      p.rect(bx, sy - h, 5, h, c)
+    }
+  }
+
+  // Cashier standing behind the counter.
+  const cx = 262
+  p.rect(cx - 10, 92, 20, 24, '#3fa39a')
+  p.rect(cx - 7, 94, 14, 22, '#e9f6f3')
+  p.rect(cx - 14, 94, 4, 16, '#3fa39a')
+  p.rect(cx + 10, 94, 4, 16, '#3fa39a')
+  p.rect(cx - 3, 88, 6, 4, '#e8b48a')
+  p.circle(cx, 80, 8, '#e8b48a')
+  p.rect(cx - 8, 70, 16, 5, '#5b3a28')
+  p.rect(cx - 9, 72, 3, 8, '#5b3a28')
+  p.rect(cx + 6, 72, 3, 8, '#5b3a28')
+  p.rect(cx - 4, 79, 2, 2, INK)
+  p.rect(cx + 2, 79, 2, 2, INK)
+  p.rect(cx - 2, 84, 4, 1, '#b4614b')
+  p.rect(cx - 5, 100, 6, 4, '#ffffff')
+
+  // Tiled floor and a welcome mat.
+  for (let ty = 116; ty < STAGE_H; ty += 10) {
+    for (let tx = 0; tx < STAGE_W; tx += 20) {
+      const even = ((tx / 20) + (ty - 116) / 10) % 2 === 0
+      p.rect(tx, ty, 20, 10, even ? '#e9e4da' : '#d6cfc2')
+    }
+  }
+  p.rect(0, 152, STAGE_W, 1, '#c4bcae')
+  p.rect(110, 158, 60, 14, '#4f7a5a')
+  p.rect(112, 160, 56, 10, '#5f8f6a')
+
+  // Counter, register and candy rack in front.
+  p.rect(196, 112, 124, 6, '#c49450')
+  p.rect(196, 118, 124, 34, '#8a5a3c')
+  for (let px = 200; px < 320; px += 24) p.rect(px, 122, 18, 26, '#9a6a48')
+  p.rect(212, 96, 26, 16, '#4a4a58')
+  p.rect(214, 98, 22, 7, '#7fd0a0')
+  p.rect(216, 100, 10, 2, '#2a5a3a')
+  p.rect(210, 108, 30, 4, '#3a3a48')
+  p.rect(176, 120, 18, 32, '#6b6b78')
+  for (let row = 0; row < 3; row++) {
+    for (let bx = 178; bx < 192; bx += 5) {
+      p.rect(bx, 123 + row * 10, 4, 7, snackColors[(row * 3 + bx) % snackColors.length])
+    }
+  }
+
+  return p.image
+}
