@@ -106,11 +106,12 @@ workflow.
 
 ## Documentation
 
-- [Game Design Document](docs/game-design-document.md)
+- [Game Design Document](docs/planning/game-design-document.md)
+- [Implementation Plan](docs/planning/implementation-plan.md)
 - [Architecture](docs/architecture.md)
 - [Technology Stack Decision](docs/tech-stack-decision.md)
 - [Meeting Notes Template](docs/meeting-notes/README.md)
-- [Design References](design/README.md)
+- [Design References](docs/design/README.md)
 
 ## Prototype layout
 
