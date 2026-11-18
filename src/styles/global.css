@@ -1,0 +1,100 @@
+/* Pixelify Sans: SIL Open Font License 1.1, self-hosted from Google Fonts. */
+@font-face {
+  font-family: 'Pixelify Sans';
+  src: url('/fonts/PixelifySans-latin.woff2') format('woff2');
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+:root {
+  --ink: #2a2238;
+  --ink-soft: #4a4060;
+  --paper: #fbf3df;
+  --paper-2: #f1e4c4;
+  --paper-3: #e3d1a8;
+  --night: #1e1a33;
+  --night-2: #2d2748;
+  --leaf: #3f8f5a;
+  --leaf-light: #c9ecc4;
+  --sky: #2f6fb0;
+  --sky-light: #cfe6f7;
+  --amber: #f2b33d;
+  --amber-light: #fde7b0;
+  --coral: #c2483b;
+  --focus: #ffcf3f;
+  --px: 4px;
+
+  color-scheme: light;
+  font-family: 'Pixelify Sans', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+  font-size: 18px;
+  line-height: 1.45;
+  color: var(--ink);
+  background: var(--night);
+  -webkit-font-smoothing: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--night);
+  /* A faint pixel grid behind the game. */
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 2px, transparent 2px);
+  background-size: 16px 16px;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 4px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.note {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.muted {
+  color: var(--ink-soft);
+}
+
+@media (max-width: 720px) {
+  :root {
+    font-size: 16px;
+  }
+
+  #root {
+    padding: 10px;
+  }
+}
