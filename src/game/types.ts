@@ -87,7 +87,7 @@ export interface Option {
   /** Money paid once when this option is committed (the dishes chore). */
   payoutOnCommitCents?: number
   feedback: Feedback
-  /** Team review note for values the GDD marks as not yet modeled. */
+  /** Team review note for values the GDD marks as not yet modeled. Never shown to players. */
   unmodeled?: string
 }
 

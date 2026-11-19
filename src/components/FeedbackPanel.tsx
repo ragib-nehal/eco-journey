@@ -36,10 +36,9 @@ export function FeedbackPanel({ option, record, onContinue }: FeedbackPanelProps
   if (changes.length === 0) changes.push({ sprite: 'check', text: 'No modeled changes' })
   const evidence = getEvidence(option.id)
   const source = evidence && getSource(evidence.sourceId)
-  // A sourced fact replaces the disclaimer; options without one keep it until researched.
-  const notes: string[] = []
-  if (!source) notes.push('Points are simplified game values, not measurements. Explanations are pending source review.')
-  if (option.unmodeled) notes.push(`Not yet modeled: ${option.unmodeled}`)
+  // Review status and `unmodeled` notes are for the team only and are not shown
+  // to players. The start and results screens explain that points are
+  // simplified game values.
 
   return (
     <div className="feedback" aria-live="polite">
@@ -69,7 +68,6 @@ export function FeedbackPanel({ option, record, onContinue }: FeedbackPanelProps
           </figure>
         )}
       </div>
-      {notes.length > 0 && <p className="note">{notes.join(' ')}</p>}
       <ContinueButton onContinue={onContinue} />
     </div>
   )
