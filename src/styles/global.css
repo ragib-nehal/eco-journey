@@ -31,7 +31,7 @@
   font-size: 22px;
   /* VT323 has one weight; a browser-faked bold smears the pixels. */
   font-synthesis: none;
-  line-height: 1.45;
+  line-height: 1.25;
   color: var(--ink);
   background: var(--night);
   -webkit-font-smoothing: none;
@@ -56,6 +56,29 @@ body {
   max-width: 1280px;
   margin: 0 auto;
   padding: 16px;
+}
+
+/* On laptop and desktop screens every screen fits the window without page
+   scrolling: each screen fills exactly one viewport and the pixel stage
+   shrinks to the space left over. Narrow screens keep normal page scrolling. */
+@media (min-width: 981px) {
+  #root {
+    height: 100vh;
+    height: 100dvh;
+  }
+
+  #root > * {
+    height: 100%;
+    min-height: 0;
+  }
+}
+
+/* Small laptops and landscape tablets: narrower columns wrap more lines, so
+   use the same slightly smaller size as phones. */
+@media (min-width: 981px) and (max-width: 1199px) {
+  :root {
+    font-size: 20px;
+  }
 }
 
 h1,

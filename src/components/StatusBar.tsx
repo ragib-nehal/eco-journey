@@ -29,12 +29,12 @@ export function StatusBar({ state }: StatusBarProps) {
         <div className="hud__stat" title="Simulated time">
           <PixelSprite name="clock" />
           <span className="hud__label">Time</span>
-          <strong className="hud__value">{formatTime(state.timeMin)}</strong>
+          <strong className="hud__value hud__value--time">{formatTime(state.timeMin)}</strong>
         </div>
         <div className="hud__stat" title="Money">
           <PixelSprite name="coins" />
           <span className="hud__label">Money</span>
-          <strong className="hud__value">{formatMoney(state.moneyCents)}</strong>
+          <strong className="hud__value hud__value--money">{formatMoney(state.moneyCents)}</strong>
           <Popup key={`m${popupKey}`} value={delta('moneyCents')} format={formatMoney} />
         </div>
         <div className="hud__stat hud__stat--energy" title="Energy (0–100)">
