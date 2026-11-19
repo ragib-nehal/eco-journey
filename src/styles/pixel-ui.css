@@ -274,62 +274,19 @@
   }
 }
 
+/* The game screen keeps normal page flow instead of the fixed one-window
+   layout used by the other screens: the stage shrinks with the window height
+   so the choices fit on common laptop screens, and the dialogue and choices
+   take only the space their content needs. */
 @media (min-width: 981px) {
-  .play {
-    flex: 1;
-    min-height: 0;
-  }
-
-  /* The choices/feedback area and the dialogue get fixed heights, sized for
-     the tallest step, so the stage keeps exactly the same size and position
-     from one decision to the next instead of jumping around. */
-  .play__main {
-    --panel-h: 310px;
-    display: grid;
-    grid-template-rows: minmax(120px, 1fr) auto var(--panel-h);
-    height: 100%;
-    min-height: 0;
-  }
-
-  .play__main > .dialogue {
-    min-height: 170px;
-  }
-
-  .play__main > .panel {
-    min-height: 0;
-    overflow: auto;
+  #root:has(> .game) {
+    height: auto;
   }
 }
 
-/* Short laptop screens: stacking stage, dialogue, and choices would squeeze
-   the stage to a sliver, so the dialogue sits beside the stage instead. */
-@media (min-width: 981px) and (max-height: 800px) {
-  .play__main {
-    grid-template-columns: minmax(0, 1fr) minmax(280px, 1fr);
-    grid-template-rows: minmax(150px, 1fr) var(--panel-h);
-    grid-template-areas:
-      'stage dialogue'
-      'panel panel';
-    column-gap: 12px;
-  }
-
-  .play__main > .stage-fit {
-    grid-area: stage;
-    place-items: center;
-  }
-
-  .play__main > .dialogue {
-    grid-area: dialogue;
-    align-self: stretch;
-    min-height: 0;
-    margin: var(--px);
-    padding: 10px 14px;
-    overflow: auto;
-  }
-
-  .play__main > .panel {
-    grid-area: panel;
-  }
+.play__main > .stage {
+  align-self: center;
+  width: min(100% - 8px, max(480px, (100vh - 450px) * 16 / 9));
 }
 
 /* --- Stage ----------------------------------------------------------------- */
@@ -749,8 +706,23 @@
   gap: 14px;
 }
 
-/* Wide screens: picture and intro on the left, goals and resources on the right. */
+/* Wide screens: picture and intro on the left, goals and resources on the right.
+   The goals column sets the height of the layout, the picture fills whatever
+   the intro leaves beside it, and the whole layout sits centered in the
+   window. On short windows the layout is capped at the window height and the
+   picture shrinks instead. */
 @media (min-width: 981px) {
+  #root:has(> .start) {
+    display: flex;
+    flex-direction: column;
+    justify-content: safe center;
+  }
+
+  #root > .start {
+    height: auto;
+    max-height: 100%;
+  }
+
   .start {
     display: grid;
     grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
