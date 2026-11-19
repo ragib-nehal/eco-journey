@@ -225,9 +225,19 @@
   color: #c8bfdc;
 }
 
+/* Fixed widths (VT323 is monospaced) so the bar never changes size or wraps
+   differently as the numbers change. */
 .hud__value {
   font-size: 1.2rem;
-  min-width: 2ch;
+  min-width: 3ch;
+}
+
+.hud__value--time {
+  min-width: 8ch;
+}
+
+.hud__value--money {
+  min-width: 6ch;
 }
 
 .hud__group--impact .hud__stat {
@@ -238,11 +248,16 @@
 
 /* --- Layout ------------------------------------------------------------- */
 
+.game {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 .play {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 300px;
   gap: 12px;
-  margin-top: 12px;
   align-items: start;
 }
 
@@ -256,6 +271,64 @@
 @media (max-width: 980px) {
   .play {
     grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 981px) {
+  .play {
+    flex: 1;
+    min-height: 0;
+  }
+
+  /* The choices/feedback area and the dialogue get fixed heights, sized for
+     the tallest step, so the stage keeps exactly the same size and position
+     from one decision to the next instead of jumping around. */
+  .play__main {
+    --panel-h: 310px;
+    display: grid;
+    grid-template-rows: minmax(120px, 1fr) auto var(--panel-h);
+    height: 100%;
+    min-height: 0;
+  }
+
+  .play__main > .dialogue {
+    min-height: 170px;
+  }
+
+  .play__main > .panel {
+    min-height: 0;
+    overflow: auto;
+  }
+}
+
+/* Short laptop screens: stacking stage, dialogue, and choices would squeeze
+   the stage to a sliver, so the dialogue sits beside the stage instead. */
+@media (min-width: 981px) and (max-height: 800px) {
+  .play__main {
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 1fr);
+    grid-template-rows: minmax(150px, 1fr) var(--panel-h);
+    grid-template-areas:
+      'stage dialogue'
+      'panel panel';
+    column-gap: 12px;
+  }
+
+  .play__main > .stage-fit {
+    grid-area: stage;
+    place-items: center;
+  }
+
+  .play__main > .dialogue {
+    grid-area: dialogue;
+    align-self: stretch;
+    min-height: 0;
+    margin: var(--px);
+    padding: 10px 14px;
+    overflow: auto;
+  }
+
+  .play__main > .panel {
+    grid-area: panel;
   }
 }
 
@@ -280,10 +353,41 @@
   image-rendering: crisp-edges;
 }
 
-/* Keep the stage short enough that the choices fit on common laptop screens. */
-.play__main > .stage {
-  align-self: center;
-  width: min(100% - 8px, max(480px, (100vh - 450px) * 16 / 9));
+/* A box that sizes the 16:9 stage to fit both its width and its height.
+   The stage adds a 4px margin on every side plus an 8px drop shadow below, so
+   16px of the height is not canvas. */
+.stage-fit {
+  display: grid;
+  place-items: end center;
+  min-height: 0;
+}
+
+.stage-fit > .stage {
+  width: min(100% - 8px, 54vh * 16 / 9);
+}
+
+.stage-fit > .hero-frame {
+  width: min(100%, 54vh * 16 / 9 + 8px);
+}
+
+@media (min-width: 981px) {
+  .stage-fit {
+    container-type: size;
+  }
+
+  .stage-fit > .stage {
+    width: min(100cqw - 8px, (100cqh - 16px) * 16 / 9);
+  }
+
+  .stage-fit > .hero-frame {
+    width: min(100cqw, (100cqh - 16px) * 16 / 9 + 8px);
+  }
+}
+
+/* A stage with a title laid over it (start and results screens). */
+.hero-frame {
+  position: relative;
+  container-type: inline-size;
 }
 
 /* --- Dialogue --------------------------------------------------------------- */
@@ -372,13 +476,47 @@
 
 .choices {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 8px;
 }
 
+/* Number, icon, and label on top; cost chips and any reason use the full
+   button width below so they don't wrap into a tall column. */
 .choice {
-  align-items: flex-start;
-  min-height: 72px;
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr);
+  grid-template-areas:
+    'key icon label'
+    'chips chips chips'
+    'reason reason reason';
+  align-items: center;
+  align-content: start;
+  gap: 4px 8px;
+  padding: 8px 10px;
+}
+
+.choice__key {
+  grid-area: key;
+}
+
+.choice__icon {
+  grid-area: icon;
+}
+
+.choice__main {
+  display: contents;
+}
+
+.choice__label {
+  grid-area: label;
+}
+
+.choice__chips {
+  grid-area: chips;
+}
+
+.choice__reason {
+  grid-area: reason;
 }
 
 .choice__key {
@@ -391,13 +529,6 @@
   font-weight: 700;
   color: #fff;
   background: var(--ink);
-}
-
-.choice__main {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  min-width: 0;
 }
 
 .choice__label {
@@ -422,11 +553,25 @@
 
 /* --- Feedback & checkpoint ------------------------------------------------ */
 
+/* Continue shares the last row with the small print to keep the panel short. */
 .feedback {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px 16px;
   padding: 4px 6px;
+}
+
+.feedback > * {
+  grid-column: 1 / -1;
+}
+
+.feedback > .note {
+  grid-column: 1;
+}
+
+.feedback > .continue {
+  grid-column: 2;
+  align-self: end;
 }
 
 .feedback__choice {
@@ -515,47 +660,33 @@
 
 /* --- Start screen --------------------------------------------------------- */
 
-.start,
-.results {
+.start {
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
 
-.start__hero,
-.results__hero {
-  position: relative;
-}
-
-.start__hero .stage,
-.results__hero .stage {
-  width: min(100% - 8px, 54vh * 16 / 9);
-  margin-inline: auto;
-}
-
-.start__title,
-.results__title {
+.start__title {
   position: absolute;
   left: 50%;
-  bottom: 18px;
+  bottom: 7%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 8px 28px;
+  padding: 0.15em 0.5em;
   color: #fff;
   text-align: center;
   white-space: nowrap;
   background: rgba(30, 26, 51, 0.88);
   box-shadow: 0 0 0 4px #0f0c1d;
   text-shadow: 3px 3px 0 #0f0c1d;
-  font-size: clamp(1.8rem, 6vw, 3.4rem);
+  /* Scales with the stage, so a small stage gets a small title. */
+  font-size: clamp(1.6rem, 9cqw, 3.4rem);
   line-height: 1.05;
-  outline: none;
 }
 
-.start__title small,
-.results__title small {
+.start__title small {
   font-size: 0.45em;
   color: var(--amber);
 }
@@ -571,17 +702,44 @@
   flex: 1 1 420px;
 }
 
-.start__grid,
-.results__grid {
+.start__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 14px;
 }
 
+/* Wide screens: picture and intro on the left, goals and resources on the right. */
+@media (min-width: 981px) {
+  .start {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    grid-template-rows: minmax(0, 1fr) auto;
+    grid-template-areas:
+      'hero info'
+      'intro info';
+    gap: 14px 18px;
+  }
+
+  .start__hero {
+    grid-area: hero;
+  }
+
+  .start__intro {
+    grid-area: intro;
+  }
+
+  .start__grid {
+    grid-area: info;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+}
+
 .legend {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   margin: 0 0 10px;
   padding: 0;
   list-style: none;
@@ -589,11 +747,126 @@
 
 .legend li {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
 }
 
+/* Line the 1x icon up with the first line of text. */
+.legend .px-sprite {
+  margin-top: 1px;
+}
+
 /* --- Results -------------------------------------------------------------- */
+
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.results__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 24px;
+  padding: 8px 16px;
+}
+
+.results__title {
+  display: flex;
+  flex-direction: column;
+  font-size: 2rem;
+  line-height: 1;
+  color: #fff;
+  text-shadow: 3px 3px 0 #0f0c1d;
+  outline: none;
+}
+
+.results__title small {
+  font-size: 0.55em;
+  color: var(--amber);
+}
+
+.results__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 28px;
+  margin: 0 0 0 auto;
+}
+
+.results__stats div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.results__stats dt {
+  font-size: 0.8rem;
+  color: #c8bfdc;
+}
+
+.results__stats dd {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.results__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+
+.results__tab[aria-selected='true'] {
+  --btn-bg: var(--amber);
+  --btn-shade: #c98f22;
+}
+
+.results__panel {
+  display: grid;
+  gap: 14px;
+  align-items: start;
+}
+
+/* The class sets display, so the hidden attribute needs restating. */
+.results__panel[hidden] {
+  display: none;
+}
+
+@media (min-width: 981px) {
+  .results__panel {
+    flex: 1;
+    min-height: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .results__panel--highlights {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .results__panel--scores {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .results__panel--summary .result-goals {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .results__panel--summary .totals {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  /* Ten scores as two columns of five, one line each. */
+  .scores__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(5, auto);
+    grid-auto-flow: column;
+    column-gap: 14px;
+  }
+
+  .results__tab {
+    padding: 6px 14px;
+  }
+}
 
 .result-goals {
   display: grid;
@@ -785,8 +1058,16 @@
   color: var(--leaf);
 }
 
+.scores__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+}
+
 .scores__clear {
-  margin-top: 8px;
+  flex: none;
 }
 
 .start__best {
@@ -795,4 +1076,13 @@
   align-items: center;
   gap: 6px;
   margin: 8px 0 0;
+}
+
+/* Wide screens: each saved score on one line so ten fit without scrolling.
+   (Placed after the base .scores__row rules so it overrides them.) */
+@media (min-width: 981px) {
+  .scores__row {
+    grid-template-columns: 2.5ch minmax(0, 1fr) auto 3ch;
+    grid-template-areas: 'rank who meta eco';
+  }
 }

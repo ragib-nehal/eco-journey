@@ -26,12 +26,14 @@ export function StartScreen({ onStart }: StartScreenProps) {
 
   return (
     <main className="start">
-      <div className="start__hero">
-        <PixelStage scene="morning" sprite="alarm" ambience="sparkle" label="A cozy bedroom at sunrise" />
-        <h1 className="start__title">
-          <span>Eco Choices</span>
-          <small>A Day in Your Life</small>
-        </h1>
+      <div className="start__hero stage-fit">
+        <div className="hero-frame">
+          <PixelStage scene="morning" sprite="alarm" ambience="sparkle" label="A cozy bedroom at sunrise" />
+          <h1 className="start__title">
+            <span>Eco Choices</span>
+            <small>A Day in Your Life</small>
+          </h1>
+        </div>
       </div>
 
       <section className="px-panel start__intro">
@@ -57,7 +59,7 @@ export function StartScreen({ onStart }: StartScreenProps) {
           <ul className="legend">
             {GOAL_ORDER.map((id) => (
               <li key={id}>
-                <PixelSprite name={GOALS[id].sprite} />
+                <PixelSprite name={GOALS[id].sprite} scale={1} />
                 <span>
                   <strong>{GOALS[id].title}</strong> &mdash; {GOALS[id].requirement}
                 </span>
@@ -72,7 +74,7 @@ export function StartScreen({ onStart }: StartScreenProps) {
           <ul className="legend">
             {RESOURCES.map((r) => (
               <li key={r.name}>
-                <PixelSprite name={r.sprite} />
+                <PixelSprite name={r.sprite} scale={1} />
                 <span>
                   <strong>{r.name}</strong> &mdash; {r.text}
                 </span>

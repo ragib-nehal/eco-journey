@@ -106,12 +106,14 @@ export function GameScreen({ state, dispatch }: GameScreenProps) {
       <StatusBar state={state} />
       <main className="play">
         <section className="play__main">
-          <PixelStage
-            scene={scenario.scene}
-            sprite={stageSprite}
-            ambience={ambience}
-            label={`${SCENE_LABEL[scenario.scene]}. ${scenario.title}.`}
-          />
+          <div className="stage-fit">
+            <PixelStage
+              scene={scenario.scene}
+              sprite={stageSprite}
+              ambience={ambience}
+              label={`${SCENE_LABEL[scenario.scene]}. ${scenario.title}.`}
+            />
+          </div>
           {dialogue}
           <div className="panel px-panel">{panel}</div>
         </section>

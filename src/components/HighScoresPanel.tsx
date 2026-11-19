@@ -103,18 +103,21 @@ export function HighScoresPanel({ report }: HighScoresPanelProps) {
         result && <p>No saved scores yet.</p>
       )}
 
-      {result && result.rank === null && result.list.length > 0 && (
-        <p className="note">This run did not make your top {MAX_SCORES}. Try a new strategy!</p>
-      )}
-
-      <p className="note">
-        Ranked by Eco Score, then goals completed, then money left. Scores are saved only in this browser.
-      </p>
-      {result && result.list.length > 0 && (
-        <button type="button" className="px-button scores__clear" onClick={clearAll}>
-          Clear scores
-        </button>
-      )}
+      <div className="scores__footer">
+        <div>
+          {result && result.rank === null && result.list.length > 0 && (
+            <p className="note">This run did not make your top {MAX_SCORES}. Try a new strategy!</p>
+          )}
+          <p className="note">
+            Ranked by Eco Score, then goals completed, then money left. Scores are saved only in this browser.
+          </p>
+        </div>
+        {result && result.list.length > 0 && (
+          <button type="button" className="px-button scores__clear" onClick={clearAll}>
+            Clear scores
+          </button>
+        )}
+      </div>
     </section>
   )
 }
