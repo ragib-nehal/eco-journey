@@ -147,7 +147,7 @@ Values below are the working gameplay-point values for the first prototype. “�
 | 01 Shower · 7:00 | Long hot shower | +20 min; Energy +15; W+6; C+2; running-late modifier +15 |
 |  | Quick shower | +5 min; Energy +5; W+2; C+1; default modifier 0 |
 |  | Skip shower | Energy -10; proposed morning modifier -5 |
-| 02 Brush teeth · 7:25 | Leave tap running | W+3 |
+| 02 Brush teeth · 7:25 | Leave tap running | W+1 (was W+3; Rev 1.2) |
 |  | Turn tap off | W+0 |
 | 03 Breakfast · 7:30 | Buy snack + bottled drink | Money -\$4; Energy +10; C+2; R+1 (single-use drink packaging); trigger bag choice |
 |  | Pack breakfast + reusable bottle | +10 min; Energy +10; C+0; R+0 (existing reusable); unlock refill later |
@@ -161,7 +161,7 @@ Values below are the working gameplay-point values for the first prototype. “�
 |  | Bike | Energy -20; base arrival 7:55; C+0 |
 |  | Dad driving same way | base arrival 7:50; C+1; availability needs narrative justification |
 | 05 Lunch · 12:00 | Local beef burger | Money \$0; C+10 |
-|  | Chicken sandwich | Money \$0; C+3 |
+|  | Chicken sandwich | Money \$0; C+2 (was C+3; Rev 1.2) |
 |  | Bean burrito (imported ingredients) | Money \$0; C+1 |
 | 06 Cleanup · 12:20 | Put everything in recycling | R+3 (contaminates recycling; plastics/food unsuitable in mixed recycling); no additional C assigned pending research |
 |  | Throw everything in trash | R+2 (recoverable material discarded); no additional C assigned pending research |
@@ -181,11 +181,11 @@ Values below are the working gameplay-point values for the first prototype. “�
 |  | Split ride-share with 3 friends | Money -\$2; C+2 |
 |  | Bus | Money -\$3; +25 min; C+2 |
 |  | Walk in rain | Energy -20; C+0 |
-|  | Ask Mom for ride | C+2; trigger idling choice |
+|  | Ask Mom for ride | C+8 (was C+2; Rev 1.2); trigger idling choice |
 | 10b Engine idling (conditional) | Agree to leave engine running | C+1 |
 |  | Ask Mom to turn engine off | C+0 |
 | 11 Dinner · 7:00 | Beef tacos | Money \$0; C+10 |
-|  | Chicken stir-fry | Money \$0; C+3 |
+|  | Chicken stir-fry | Money \$0; C+2 (was C+3; Rev 1.2) |
 |  | Veggie pasta | Money \$0; C+1 |
 | 12 Chore · 7:45 | Decline dishes chore | Money +\$0; do not open method choice |
 |  | Accept chore | Money +\$5 on completion; open dishwashing method choice |
@@ -476,3 +476,22 @@ Example: C score 80, W score 60 and R score 70 → Eco Score 70/100. This is a r
 - Preserve the conditional logic: breakfast purchase → bag choice; packed bottle → refill; Mom pickup → idling; accepting and completing chore → exactly one \$5 payout.
 
 - For the November 19 playtest, prioritize a functioning one-day experience and clear feedback over precision or a timed-decision system.
+
+## Revision 1.2 — research-based point adjustments (proposed, pending team sign-off)
+
+Date: November 19, 2026. Following the GDD section 9 rule ("If research contradicts a point value, update the value and note the revision"), these values changed after sourced facts were added in `docs/research/decision-evidence.json`. Points remain simplified game values, not measurements; the aim is the right order and rough proportion between options.
+
+| **Option** | **Change** | **Evidence** | **Reasoning** |
+|----|----|----|----|
+| Leave tap running | W+3 → W+1 | EPA WaterSense: standard faucet 2.2 gal/min; standard showerhead 2.5 gal/min | A 2-minute brush with the tap running uses less water than a 5-minute shower (W+2), so it should score below it. |
+| Chicken sandwich / chicken stir-fry | C+3 → C+2 | Our World in Data: beef about 60, poultry about 6, peas about 1 kg CO2eq per kg | Chicken sits much closer to plant-based meals than to beef. Beef C+10 and plant-based C+1 are unchanged. |
+| Ask Mom for ride | C+2 → C+8 | EPA: typical passenger vehicle about 400 g CO2 per mile | Matches section 7's reasoning that an extra car trip arranged for the player costs more than a pre-existing one. It now equals a solo ride-share (C+8); idling still adds C+1. |
+
+Achievable bounds after the change: Carbon 4–62 (was 4–56), Water 0–13 (was 0–15), Waste 1–13 (unchanged).
+
+Reviewed and intentionally unchanged:
+
+- **Bus (C+2) vs solo ride-share (C+8):** OWID's averages put a bus at about 57% of a petrol car per passenger-km, but the game models the player's marginal share of a bus that runs anyway (section 7 review notes). Kept as designed.
+- **Bike and walk (C+0):** cycling has a small footprint (16–50 g CO2eq per km). Covered by the Default-Zero Rule ("not modeled", not "zero impact").
+- **Cleanup carbon:** EPA estimates landfilled food causes about 58% of landfill methane, but disposal stays Waste-only per the section 7 notes, avoiding an invented carbon number. Open question for the team.
+

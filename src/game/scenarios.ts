@@ -91,7 +91,7 @@ const scenarioList: Scenario[] = [
         id: 'teeth-running',
         label: 'Leave the tap running',
         sprite: 'sink',
-        effects: { water: 3 },
+        effects: { water: 1 },
         feedback: {
           outcome: 'Teeth brushed, with the water running the whole time.',
           why: 'Water left running while brushing goes straight down the drain unused.',
@@ -190,7 +190,7 @@ const scenarioList: Scenario[] = [
         effects: { moneyCents: -200, carbon: 3, waste: 2 },
         feedback: {
           outcome: 'You buy a new canvas tote for your snack.',
-          why: 'Your new tote was made today. Reusable bags make up for their production only when you reuse them many times.',
+          why: 'Your new tote was made today, so its production impact counts now. How much it helps later depends on how often you reuse it.',
         },
       },
       {
@@ -281,7 +281,7 @@ const scenarioList: Scenario[] = [
         id: 'lunch-chicken',
         label: 'Chicken sandwich',
         sprite: 'tray',
-        effects: { carbon: 3 },
+        effects: { carbon: 2 },
         feedback: {
           outcome: 'A chicken sandwich hits the spot.',
           why: 'Poultry usually has a much lower climate impact than beef.',
@@ -561,7 +561,7 @@ const scenarioList: Scenario[] = [
         id: 'home-mom',
         label: 'Ask Mom for a ride',
         sprite: 'car-blue',
-        effects: { carbon: 2, setFlags: ['momPickup'] },
+        effects: { carbon: 8, setFlags: ['momPickup'] },
         followUp: 'idling',
         feedback: {
           outcome: 'Mom comes to pick you up.',
@@ -626,7 +626,7 @@ const scenarioList: Scenario[] = [
         id: 'dinner-chicken',
         label: 'Chicken stir-fry',
         sprite: 'plate',
-        effects: { carbon: 3 },
+        effects: { carbon: 2 },
         feedback: {
           outcome: 'A quick chicken stir-fry for the family.',
           why: 'Chicken usually has a much lower climate impact than beef.',
@@ -793,7 +793,7 @@ const scenarioList: Scenario[] = [
         effects: { energy: -5, carbon: 0 },
         feedback: {
           outcome: 'You pull on an extra blanket. It is a little chilly.',
-          why: 'Heating is one of the biggest energy uses at home, so turning it down saves more. A plugged-in charger still uses a little power, though.',
+          why: 'Turning the heat down saves more than unplugging one charger. A plugged-in charger still uses a little power, and many add up.',
         },
       },
     ],
