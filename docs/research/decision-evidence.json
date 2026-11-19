@@ -1,0 +1,372 @@
+{
+  "sources": {
+    "epa-watersense-showerheads": {
+      "publisher": "U.S. EPA WaterSense",
+      "title": "Showerheads",
+      "year": 2026,
+      "url": "https://www.epa.gov/watersense/showerheads",
+      "accessed": "2026-11-19"
+    },
+    "epa-watersense-start-saving": {
+      "publisher": "U.S. EPA WaterSense",
+      "title": "Start Saving",
+      "year": 2026,
+      "url": "https://www.epa.gov/watersense/start-saving",
+      "accessed": "2026-11-19"
+    },
+    "epa-watersense-bathroom-faucets": {
+      "publisher": "U.S. EPA WaterSense",
+      "title": "Bathroom Faucets",
+      "year": 2026,
+      "url": "https://www.epa.gov/watersense/bathroom-faucets",
+      "accessed": "2026-11-19"
+    },
+    "epa-containers-packaging": {
+      "publisher": "U.S. EPA",
+      "title": "Containers and Packaging: Product-Specific Data",
+      "year": 2026,
+      "url": "https://www.epa.gov/facts-and-figures-about-materials-waste-and-recycling/containers-and-packaging-product-specific",
+      "accessed": "2026-11-19"
+    },
+    "epa-typical-vehicle": {
+      "publisher": "U.S. EPA",
+      "title": "Greenhouse Gas Emissions from a Typical Passenger Vehicle",
+      "year": 2026,
+      "url": "https://www.epa.gov/greenvehicles/greenhouse-gas-emissions-typical-passenger-vehicle",
+      "accessed": "2026-11-19"
+    },
+    "owid-travel-carbon-footprint": {
+      "publisher": "Our World in Data",
+      "title": "Which form of transport has the smallest carbon footprint?",
+      "year": 2023,
+      "url": "https://ourworldindata.org/travel-carbon-footprint",
+      "accessed": "2026-11-19"
+    },
+    "owid-travel-mode-chart": {
+      "publisher": "Our World in Data",
+      "title": "Carbon footprint of travel per kilometer",
+      "year": 2022,
+      "url": "https://ourworldindata.org/grapher/carbon-footprint-travel-mode",
+      "accessed": "2026-11-19"
+    },
+    "fueleconomy-planning": {
+      "publisher": "U.S. DOE and EPA, FuelEconomy.gov",
+      "title": "Planning and Combining Trips",
+      "year": 2026,
+      "url": "https://www.fueleconomy.gov/feg/planning.shtml",
+      "accessed": "2026-11-19"
+    },
+    "fueleconomy-drive-habits": {
+      "publisher": "U.S. DOE and EPA, FuelEconomy.gov",
+      "title": "Driving More Efficiently",
+      "year": 2026,
+      "url": "https://www.fueleconomy.gov/feg/driveHabits.jsp",
+      "accessed": "2026-11-19"
+    },
+    "owid-food-local": {
+      "publisher": "Our World in Data",
+      "title": "You want to reduce the carbon footprint of your food? Focus on what you eat, not whether your food is local",
+      "year": 2020,
+      "url": "https://ourworldindata.org/food-choice-vs-eating-local",
+      "accessed": "2026-11-19"
+    },
+    "epa-recycle-common": {
+      "publisher": "U.S. EPA",
+      "title": "How Do I Recycle?: Common Recyclables",
+      "year": 2026,
+      "url": "https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables",
+      "accessed": "2026-11-19"
+    },
+    "epa-food-waste-methane": {
+      "publisher": "U.S. EPA Office of Research and Development",
+      "title": "Quantifying Methane Emissions from Landfilled Food Waste",
+      "year": 2026,
+      "url": "https://www.epa.gov/land-research/quantifying-methane-emissions-landfilled-food-waste",
+      "accessed": "2026-11-19"
+    },
+    "epa-textiles": {
+      "publisher": "U.S. EPA",
+      "title": "Textiles: Material-Specific Data",
+      "year": 2026,
+      "url": "https://www.epa.gov/facts-and-figures-about-materials-waste-and-recycling/textiles-material-specific-data",
+      "accessed": "2026-11-19"
+    },
+    "epa-plastic-compost-faq": {
+      "publisher": "U.S. EPA Trash Free Waters",
+      "title": "Frequently Asked Questions about Plastic Recycling and Composting",
+      "year": 2026,
+      "url": "https://www.epa.gov/trash-free-waters/frequently-asked-questions-about-plastic-recycling-and-composting",
+      "accessed": "2026-11-19"
+    },
+    "energystar-dishwashers": {
+      "publisher": "U.S. EPA ENERGY STAR",
+      "title": "Dishwashers",
+      "year": 2026,
+      "url": "https://www.energystar.gov/products/dishwashers",
+      "accessed": "2026-11-19"
+    },
+    "energystar-clothes-washers": {
+      "publisher": "U.S. EPA ENERGY STAR",
+      "title": "Clothes Washers",
+      "year": 2026,
+      "url": "https://www.energystar.gov/products/clothes_washers",
+      "accessed": "2026-11-19"
+    },
+    "eia-energy-use-homes": {
+      "publisher": "U.S. Energy Information Administration",
+      "title": "Use of energy explained: Energy use in homes",
+      "year": 2023,
+      "url": "https://www.eia.gov/energyexplained/use-of-energy/homes.php",
+      "accessed": "2026-11-19"
+    },
+    "lbnl-standby-faq": {
+      "publisher": "Lawrence Berkeley National Laboratory",
+      "title": "Standby Power: Frequently Asked Questions",
+      "year": 2026,
+      "url": "https://standby.lbl.gov/node/7",
+      "accessed": "2026-11-19"
+    }
+  },
+  "evidence": {
+    "shower-long": {
+      "fact": "Showering makes up nearly 17% of the water used inside US homes. For the average family, that adds up to nearly 40 gallons a day.",
+      "sourceId": "epa-watersense-showerheads",
+      "status": "draft",
+      "notes": "Page last updated March 3, 2026. Intro (above 'On This Page'): \"Showering is one of the leading ways we use water in the home, accounting for nearly 17 percent of residential indoor water use\" ... \"for the average family, that adds up to nearly 40 gallons per day\"."
+    },
+    "shower-quick": {
+      "fact": "Standard showerheads use 2.5 gallons of water per minute. Using less hot water also cuts the energy needed to heat it.",
+      "sourceId": "epa-watersense-showerheads",
+      "status": "draft",
+      "notes": "Page last updated March 3, 2026. 'Shower With Power': \"standard showerheads use 2.5 gallons of water per minute (gpm)\". 'WaterSense Savings': \"these water savings will reduce demands on water heaters, they will also save energy.\""
+    },
+    "shower-skip": {
+      "fact": "The US uses nearly 1.2 trillion gallons of water a year just for showering, so every shower you shorten or skip saves water.",
+      "sourceId": "epa-watersense-showerheads",
+      "status": "draft",
+      "notes": "Page last updated March 3, 2026. Intro: \"That's nearly 1.2 trillion gallons of water used in the United States annually just for showering\". The 'saves water' clause is a plain inference, not a page quote; the page gives no figure for skipping a shower."
+    },
+    "teeth-running": {
+      "fact": "A standard bathroom faucet flows 2.2 gallons per minute. Turning it off while you brush can save as much as 3,000 gallons a year.",
+      "sourceId": "epa-watersense-bathroom-faucets",
+      "status": "draft",
+      "notes": "Page last updated June 16, 2026. 'Faucet Flows': \"from the standard flow of 2.2 gallons per minute without sacrificing performance\". Intro: \"turn off the tap while brushing our teeth (as much as 3,000 gallons per year!)\"."
+    },
+    "teeth-off": {
+      "fact": "The EPA advises turning off the tap while brushing. A faucet running for 5 minutes uses about as much energy as a 60-watt bulb left on for 9 hours.",
+      "sourceId": "epa-watersense-start-saving",
+      "status": "draft",
+      "notes": "Page last updated May 8, 2026. 'Save Indoors': \"Turn off the tap while shaving or brushing teeth.\" 'Save Energy': \"letting your faucet run for five minutes uses about as much energy as letting a 60-watt light bulb run for 9 hours.\" The page gives no gallons-saved figure for brushing."
+    },
+    "breakfast-buy": {
+      "fact": "Containers and packaging made up 82.2 million tons, or 28.1%, of all US municipal waste generated in 2018.",
+      "sourceId": "epa-containers-packaging",
+      "status": "draft",
+      "notes": "Page last updated October 19, 2026. Intro: containers and packaging make up a major portion of MSW, \"amounting to 82.2 million tons of generation in 2018 (28.1 percent of total generation).\""
+    },
+    "breakfast-pack": {
+      "fact": "Only 53.9% of US containers and packaging were recycled in 2018. Reusing a bottle you already own adds no new packaging at all.",
+      "sourceId": "epa-containers-packaging",
+      "status": "draft",
+      "notes": "Page last updated October 19, 2026. 'Overview of Containers and Packaging': \"In 2018, the recycling rate of generated packaging and containers was 53.9 percent.\" Second sentence is a plain inference, not a page quote."
+    },
+    "commute-rideshare": {
+      "fact": "A typical US passenger vehicle emits about 400 grams of CO2 per mile. On a ride arranged just for you, those emissions are all for one passenger.",
+      "sourceId": "epa-typical-vehicle",
+      "status": "draft",
+      "notes": "Page last updated June 3, 2026. 'How much tailpipe carbon dioxide (CO2) is emitted from driving one mile?': \"The average passenger vehicle emits about 400 grams of CO2 per mile.\" Assumes \"a fuel economy of about 22.2 miles per gallon\". Tailpipe only."
+    },
+    "commute-bus": {
+      "fact": "UK 2022 figures: an average bus emits 96.5 g CO2eq per passenger-km, vs 170.48 g for a petrol car. Exact numbers vary by country.",
+      "sourceId": "owid-travel-mode-chart",
+      "status": "draft",
+      "notes": "Chart page shows no last-updated date; year 2022 is the data year in the chart's CSV. Values from https://ourworldindata.org/grapher/carbon-footprint-travel-mode.csv: \"Bus (average),2022,96.5\" and \"Petrol car,2022,170.48\". Unit from page description: \"grams of carbon dioxide-equivalents per passenger kilometer\". Underlying data: UK Department for Energy Security and Net Zero 2022 conversion factors (per the OWID article). The article warns: \"there may be differences across countries based on their electricity mix, vehicle stock, and public transport network.\""
+    },
+    "commute-bike": {
+      "fact": "Cycling 1 km usually emits 16 to 50 g CO2eq, depending on how efficiently you cycle and what you eat. Biking instead of driving cuts short-trip emissions about 75%.",
+      "sourceId": "owid-travel-carbon-footprint",
+      "status": "draft",
+      "notes": "Article first published 2020, updated 2023. 'Walk, bike, or take the train for the lowest footprint': \"the carbon footprint of cycling one kilometer is usually in the range of 16 to 50 grams CO2eq per km depending on how efficiently you cycle and what you eat.\" Body: \"Using a bike instead of a car for short trips would reduce travel emissions by around 75%.\""
+    },
+    "commute-dad": {
+      "fact": "Several short car trips from a cold start can use twice as much fuel as one longer, multipurpose trip. Joining Dad's drive avoids a separate trip.",
+      "sourceId": "fueleconomy-planning",
+      "status": "draft",
+      "notes": "Page shows no last-updated date; year set to access year (2026), reviewer to confirm. 'Planning and Combining Trips': \"several short trips taken from a cold start can use twice as much fuel as a longer, multipurpose trip\". Second sentence is a plain inference about the scenario."
+    },
+    "lunch-beef": {
+      "fact": "Producing 1 kg of beef emits about 60 kg of greenhouse gases (CO2eq). Transport is usually under 1% of that, so local beef is still high-carbon.",
+      "sourceId": "owid-food-local",
+      "status": "draft",
+      "notes": "Published January 24, 2020 (no later update shown). 'Where do the emissions from our food come from?': \"producing a kilogram of beef emits 60 kilograms of greenhouse gases (CO2-equivalents).\" Same page: \"Transport typically accounts for less than 1% of beef's GHG emissions\" (elsewhere \"In beef from beef herds, it's 0.5%.\")."
+    },
+    "lunch-chicken": {
+      "fact": "Poultry emits about 6 kg of greenhouse gases (CO2eq) per kg produced. That is far below beef's 60 kg, but higher than most plant-based foods.",
+      "sourceId": "owid-food-local",
+      "status": "draft",
+      "notes": "Published January 24, 2020. 'Where do the emissions from our food come from?': \"Poultry and pork have lower footprints but are still higher than most plant-based foods, at 6 and 7 kg CO2-equivalents, respectively.\" and \"producing a kilogram of beef emits 60 kilograms of greenhouse gases\"."
+    },
+    "lunch-burrito": {
+      "fact": "Transport is under 10% of emissions for most foods. Peas, a legume like beans, emit just 1 kg CO2eq per kg. What you eat matters more than distance.",
+      "sourceId": "owid-food-local",
+      "status": "draft",
+      "notes": "Published January 24, 2020. \"Transport is a small contributor to emissions. For most food products, it accounts for less than 10%\". 'Where do the emissions from our food come from?': \"peas emit just 1 kilogram per kg.\" The page gives no figure for beans specifically; peas are used as the closest legume. Title: \"Focus on what you eat, not whether your food is local\"."
+    },
+    "cleanup-recycling": {
+      "fact": "The EPA says food can't be recycled, and containers with food on them can't be either. Scrape them \"spatula-clean\" before they go in the bin.",
+      "sourceId": "epa-recycle-common",
+      "status": "draft",
+      "notes": "Page last updated May 19, 2026. 'Food': \"Food cannot be recycled.\" 'Plastics' > 'Can plastic containers, cups and utensils be recycled?': \"Items with food debris cannot be recycled.\" 'Can I recycle plastic containers that had food in them?': \"“Spatula-clean” is clean enough to recycle!\" Local rules vary by program."
+    },
+    "cleanup-trash": {
+      "fact": "Food is about 24% of the trash sent to US landfills, but it causes an estimated 58% of the methane escaping from those landfills.",
+      "sourceId": "epa-food-waste-methane",
+      "status": "draft",
+      "notes": "Page last updated March 4, 2026. Intro: \"Food waste comprises about 24 percent of municipal solid waste disposed of in landfills.\" \"An estimated 58 percent of the fugitive methane emissions\" from MSW landfills are \"from landfilled food waste.\" Based on EPA report EPA-600-R-23-064 (October 2023)."
+    },
+    "cleanup-sort": {
+      "fact": "The EPA says food can't be recycled, but throwing it in the trash isn't the best option either. Sorting keeps food out of recycling bins.",
+      "sourceId": "epa-recycle-common",
+      "status": "draft",
+      "notes": "Page last updated May 19, 2026. 'Food': \"Food cannot be recycled. However, throwing food into the trash is not the best management option.\" The last sentence is a plain inference. Local disposal rules vary."
+    },
+    "drink-plastic": {
+      "fact": "Only 29.1% of PET plastic bottles and jars were recycled in the US in 2018.",
+      "sourceId": "epa-containers-packaging",
+      "status": "draft",
+      "notes": "Page last updated October 19, 2026. 'Plastic Containers and Packaging': \"The recycling rate of PET bottles and jars was 29.1 percent in 2018 (910,000 tons).\""
+    },
+    "drink-juice": {
+      "fact": "About 31.3% of glass containers were recycled in the US in 2018, so most new glass bottles were not recycled.",
+      "sourceId": "epa-containers-packaging",
+      "status": "draft",
+      "notes": "Page last updated October 19, 2026. 'Glass Containers and Packaging': \"The estimated amount of glass containers recycled in 2018 was 3.1 million tons, or 31.3 percent of generation.\" Second clause follows directly from 31.3% recycled."
+    },
+    "mall-new": {
+      "fact": "US landfills received 11.3 million tons of textiles in 2018, and only about 13% of clothing and footwear was recycled.",
+      "sourceId": "epa-textiles",
+      "status": "draft",
+      "notes": "Page last updated March 19, 2026. 'Overview': \"Landfills received 11.3 million tons of MSW textiles in 2018.\" \"EPA estimated that the recycling rate for textiles in clothing and footwear was 13 percent\" (based on American Textile Recycling Service information)."
+    },
+    "cup-recycling": {
+      "fact": "The EPA says compostable plastics don't belong in recycling bins: they can contaminate and disrupt the recycling stream if mixed with regular plastics.",
+      "sourceId": "epa-plastic-compost-faq",
+      "status": "draft",
+      "notes": "Page last updated October 26, 2026. 'What if my community doesn't have a composting recycling pick-up program. Should I dispose of compostable plastic in the plastic recycling pick-up bins?': \"No. Compostable plastics are not intended for recycling and can contaminate and disrupt the recycling stream\" ... \"if intermixed with petroleum-based plastics that are non-compostable.\" Applies to compostable plastic cups; rules vary by area."
+    },
+    "cup-trash": {
+      "fact": "Compostable plastic is generally meant for industrial composting. With no compost program, the EPA still says it should not go in recycling.",
+      "sourceId": "epa-plastic-compost-faq",
+      "status": "draft",
+      "notes": "Page last updated October 26, 2026. 'If a plastic product is labeled “compostable,” can I add it to my home compost pile?': \"Plastic that is labeled as compostable is generally intended to be sent to an industrial or commercial composting facility\". Recycling-bin answer as in cup-recycling (\"No.\"). The page does not explicitly say the trash is the right bin."
+    },
+    "home-rideshare": {
+      "fact": "A typical US car emits about 400 grams of CO2 per mile. Riding alone means you carry that trip's emissions instead of sharing them.",
+      "sourceId": "epa-typical-vehicle",
+      "status": "draft",
+      "notes": "Page last updated June 3, 2026. 'How much tailpipe carbon dioxide (CO2) is emitted from driving one mile?': \"The average passenger vehicle emits about 400 grams of CO2 per mile.\" Second sentence is a plain inference."
+    },
+    "home-split": {
+      "fact": "Our World in Data's travel comparison says car-sharing will massively reduce your footprint, and it also helps cut local air pollution and congestion.",
+      "sourceId": "owid-travel-carbon-footprint",
+      "status": "draft",
+      "notes": "Article first published 2020, updated 2023. 'Some general takeaways on how you can reduce the carbon footprint of travel': \"Car-sharing will massively reduce your footprint — it also helps to reduce local air pollution and congestion.\" No per-occupant figure given."
+    },
+    "home-bus": {
+      "fact": "Our World in Data's comparison of travel emissions finds public transport is usually your best option if you can't walk or cycle.",
+      "sourceId": "owid-travel-carbon-footprint",
+      "status": "draft",
+      "notes": "Article first published 2020, updated 2023. \"Public transport is usually your best option if you can't walk or cycle.\" Data from UK government conversion factors; rankings may differ across countries."
+    },
+    "home-walk": {
+      "fact": "Our World in Data's advice for the lowest travel footprint: walk, bike, or take the train.",
+      "sourceId": "owid-travel-carbon-footprint",
+      "status": "draft",
+      "notes": "Article first published 2020, updated 2023. Section heading: \"Walk, bike, or take the train for the lowest footprint\". The page gives no numeric value for walking."
+    },
+    "home-mom": {
+      "fact": "Every gallon of gasoline burned creates about 8,887 grams of CO2. A trip made just to pick you up burns extra fuel.",
+      "sourceId": "epa-typical-vehicle",
+      "status": "draft",
+      "notes": "Page last updated June 3, 2026. 'How much tailpipe carbon dioxide (CO2) is created from burning one gallon of fuel?': \"CO2 emissions from a gallon of gasoline: 8,887 grams CO2/ gallon\". Second sentence is a plain inference."
+    },
+    "idling-on": {
+      "fact": "Idling can use a quarter to a half gallon of fuel per hour, depending on engine size and air conditioner use.",
+      "sourceId": "fueleconomy-drive-habits",
+      "status": "draft",
+      "notes": "Page shows no last-updated date; year set to access year (2026), reviewer to confirm. 'Avoid Excessive Idling': \"Idling can use a quarter to a half gallon of fuel per hour, depending on engine size and air conditioner (AC) use.\""
+    },
+    "idling-off": {
+      "fact": "Restarting a car takes only about 10 seconds' worth of fuel, so turning the engine off while parked saves fuel.",
+      "sourceId": "fueleconomy-drive-habits",
+      "status": "draft",
+      "notes": "Page shows no last-updated date; year set to access year (2026), reviewer to confirm. 'Avoid Excessive Idling': \"Turn off your engine when your vehicle is parked.\" \"It only takes about 10 seconds worth of fuel to restart your vehicle.\" Best Practices: \"any shutdown longer than 1 minute will save money.\""
+    },
+    "dinner-beef": {
+      "fact": "Beef emits about 60 kg of greenhouse gases per kg. Switching from beef to chicken, pork or plant-based foods cuts your footprint far more than eating local.",
+      "sourceId": "owid-food-local",
+      "status": "draft",
+      "notes": "Published January 24, 2020. \"producing a kilogram of beef emits 60 kilograms of greenhouse gases (CO2-equivalents).\" Conclusion: \"Eating less meat and dairy or switching from ruminant meat to chicken, pork, or plant-based alternatives will reduce your footprint by much more.\""
+    },
+    "dinner-chicken": {
+      "fact": "Poultry and pork have lower footprints than beef, at 6 and 7 kg CO2eq per kg, but they are still higher than most plant-based foods.",
+      "sourceId": "owid-food-local",
+      "status": "draft",
+      "notes": "Published January 24, 2020. 'Where do the emissions from our food come from?': \"Poultry and pork have lower footprints but are still higher than most plant-based foods, at 6 and 7 kg CO2-equivalents, respectively.\""
+    },
+    "dinner-veggie": {
+      "fact": "Peas emit about 1 kg of greenhouse gases per kg, vs 60 kg for beef and 6 kg for poultry. Most plant-based foods are lower than meat.",
+      "sourceId": "owid-food-local",
+      "status": "draft",
+      "notes": "Published January 24, 2020. \"producing a kilogram of beef emits 60 kilograms of greenhouse gases (CO2-equivalents). In contrast, peas emit just 1 kilogram per kg.\" \"Poultry and pork have lower footprints but are still higher than most plant-based foods, at 6 and 7 kg\". The text gives no value for pasta/wheat or mixed vegetables (chart only, not read)."
+    },
+    "dishes-hand": {
+      "fact": "An ENERGY STAR dishwasher uses less than half as much energy as washing dishes by hand, and saves 8,400 gallons of water a year.",
+      "sourceId": "energystar-dishwashers",
+      "status": "draft",
+      "notes": "Page shows no last-updated date (spec effective July 19, 2023); year set to access year (2026), reviewer to confirm. 'Save energy and water': \"uses less than half as much energy as washing dishes by hand\" ... \"saves 8,400 gallons of water each year!\" Applies to ENERGY STAR certified models."
+    },
+    "dishes-rinse": {
+      "fact": "ENERGY STAR says to scrape, not rinse: rinsing dishes before loading the dishwasher increases the total water and energy used.",
+      "sourceId": "energystar-dishwashers",
+      "status": "draft",
+      "notes": "Page shows no last-updated date. 'Best Practices' > 'Scrape don't rinse': \"Rinsing dishes before loading them in the dishwasher increases the total water and energy used.\" \"If your dirty dishes sit overnight, use your dishwasher's rinse feature.\""
+    },
+    "dishes-half": {
+      "fact": "Dishwashers use about the same energy and water no matter how many dishes are inside, so ENERGY STAR says to run full loads whenever possible.",
+      "sourceId": "energystar-dishwashers",
+      "status": "draft",
+      "notes": "Page shows no last-updated date. 'Best Practices' > 'Load it up': \"Dishwashers use about the same amount of energy and water regardless of the number of dishes inside\" ... \"so run full loads whenever possible.\""
+    },
+    "dishes-full": {
+      "fact": "The EPA says dishwashers typically use less water than hand washing, and advises making sure the dishwasher is fully loaded.",
+      "sourceId": "epa-watersense-start-saving",
+      "status": "draft",
+      "notes": "Page last updated May 8, 2026. 'Save Indoors' > 'In the kitchen': \"Use a dishwasher—and when you do, make sure it's fully loaded!\" \"Dishwashers typically use less water than hand washing.\""
+    },
+    "laundry-hot": {
+      "fact": "Water heating uses about 90% of the energy it takes to run a clothes washer.",
+      "sourceId": "energystar-clothes-washers",
+      "status": "draft",
+      "notes": "Page shows no last-updated date (spec effective February 5, 2018); year set to access year (2026), reviewer to confirm. 'Best Practices' > 'Wash in cold water.': \"Water heating consumes about 90% of the energy it takes to operate a clothes washer.\""
+    },
+    "laundry-cold": {
+      "fact": "Switching a wash from hot to warm can cut its energy use in half, and the cold cycle reduces energy use even more.",
+      "sourceId": "energystar-clothes-washers",
+      "status": "draft",
+      "notes": "Page shows no last-updated date. 'Best Practices' > 'Wash in cold water.': \"Switching your temperature setting from hot to warm can cut energy use in half.\" \"Using the cold cycle reduces energy use even more.\" \"Unless you're dealing with oily stains, washing in cold water will generally do a good job of cleaning.\""
+    },
+    "bed-unplug": {
+      "fact": "In 2020, more than half (52%) of a US household's energy went to just two uses: space heating and air conditioning.",
+      "sourceId": "eia-energy-use-homes",
+      "status": "draft",
+      "notes": "Page last updated December 18, 2023. 'More than half of energy use in homes is for heating and air conditioning': \"on average, more than half—52% in 2020—of a household’s annual energy consumption\" ... \"is for just two energy end uses: space heating and air conditioning.\" Source: Residential Energy Consumption Survey 2020. Heating alone is not split out in the quoted text."
+    },
+    "bed-heat": {
+      "fact": "Standby power is typically 5-10% of home electricity use. Any single plugged-in device uses very little; it adds up across 40+ products.",
+      "sourceId": "lbnl-standby-faq",
+      "status": "draft",
+      "notes": "Page shows no last-updated date; year from footer \"©2026\". 'How much power is used for standby in the US? Worldwide?': \"Nobody knows for sure, but it’s typically 5-10% of residential electricity use in most developed countries\". 'What are watts and kilowatt-hours?': \"almost any single device consumes very little in annual electricity use\" ... \"but, when multiplied by 40+ products, the sum is significant.\""
+    }
+  }
+}
