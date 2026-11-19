@@ -74,7 +74,7 @@ Vitest load itself twice and fail with
 
 The game draws a 320×180 pixel stage on a canvas and scales it up with
 nearest-neighbour sampling. The UI uses stepped pixel borders and the
-self-hosted Pixelify Sans font.
+self-hosted VT323 font.
 
 The low-resolution art in `public/assets/pixel/` is generated from the
 illustrated assets in `public/assets/` by a dependency-free script:
@@ -129,5 +129,5 @@ Source modules:
 
 ## Credits
 
-- Pixelify Sans font: SIL Open Font License 1.1, self-hosted from Google Fonts
+- VT323 font: SIL Open Font License 1.1, self-hosted from Google Fonts
   (`public/fonts/`).
