@@ -52,6 +52,26 @@ export interface Feedback {
   why: string
 }
 
+/** A cited source for decision evidence (docs/research/decision-evidence.json). */
+export interface Source {
+  publisher: string
+  title: string
+  year: number
+  url: string
+  /** Date the page was read, YYYY-MM-DD. */
+  accessed: string
+}
+
+/** One researched fact shown under "Why it matters" for a decision option. */
+export interface Evidence {
+  fact: string
+  sourceId: string
+  /** 'draft' until a teammate checks the fact against its source. */
+  status: 'draft' | 'reviewed'
+  /** Researcher notes (supporting quote, reviewer); never shown to players. */
+  notes?: string
+}
+
 export interface Option {
   id: string
   label: string
@@ -67,7 +87,7 @@ export interface Option {
   /** Money paid once when this option is committed (the dishes chore). */
   payoutOnCommitCents?: number
   feedback: Feedback
-  /** Team review note for values the GDD marks as not yet modeled. */
+  /** Team review note for values the GDD marks as not yet modeled. Never shown to players. */
   unmodeled?: string
 }
 

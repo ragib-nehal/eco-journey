@@ -204,7 +204,7 @@ describe('chore payout', () => {
 describe('resources', () => {
   it('keeps C, W and R separate and never deducts them as money', () => {
     const state = play(['shower-long', 'teeth-running'])
-    expect(state).toMatchObject({ carbon: 2, water: 9, waste: 0, moneyCents: 2500 })
+    expect(state).toMatchObject({ carbon: 2, water: 7, waste: 0, moneyCents: 2500 })
   })
 
   it('clamps Energy to 0–100', () => {
@@ -262,7 +262,7 @@ describe('eco score', () => {
     expect(computeBounds()).toMatchInlineSnapshot(`
       {
         "carbon": {
-          "max": 56,
+          "max": 62,
           "min": 4,
         },
         "waste": {
@@ -270,7 +270,7 @@ describe('eco score', () => {
           "min": 1,
         },
         "water": {
-          "max": 15,
+          "max": 13,
           "min": 0,
         },
       }

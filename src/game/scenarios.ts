@@ -7,7 +7,10 @@
 // Feedback copy: lines commented "Copy from GDD section 9" come from the GDD.
 // Every other line is DRAFT copy written for the prototype and still needs
 // content/research review (with a source attached) before it is final. No line
-// states a measured quantity. The UI labels all explanations as pending review.
+// states a measured quantity. Review status is tracked for the team only and is
+// not shown to players.
+// Researched, cited facts for each option live in
+// docs/research/decision-evidence.json, keyed by option id (see evidence.ts).
 import type { Option, Scenario, ScenarioId } from './types.ts'
 
 export const time = (hours: number, minutes = 0) => hours * 60 + minutes
@@ -88,7 +91,7 @@ const scenarioList: Scenario[] = [
         id: 'teeth-running',
         label: 'Leave the tap running',
         sprite: 'sink',
-        effects: { water: 3 },
+        effects: { water: 1 },
         feedback: {
           outcome: 'Teeth brushed, with the water running the whole time.',
           why: 'Water left running while brushing goes straight down the drain unused.',
@@ -187,7 +190,7 @@ const scenarioList: Scenario[] = [
         effects: { moneyCents: -200, carbon: 3, waste: 2 },
         feedback: {
           outcome: 'You buy a new canvas tote for your snack.',
-          why: 'A new tote is made today; any benefit from many future reuses is not counted in a one-day game.',
+          why: 'Your new tote was made today, so its production impact counts now. How much it helps later depends on how often you reuse it.',
         },
       },
       {
@@ -278,10 +281,10 @@ const scenarioList: Scenario[] = [
         id: 'lunch-chicken',
         label: 'Chicken sandwich',
         sprite: 'tray',
-        effects: { carbon: 3 },
+        effects: { carbon: 2 },
         feedback: {
           outcome: 'A chicken sandwich hits the spot.',
-          why: 'Poultry is usually modeled with a lower climate impact than beef.',
+          why: 'Poultry usually has a much lower climate impact than beef.',
         },
       },
       {
@@ -291,8 +294,8 @@ const scenarioList: Scenario[] = [
         effects: { carbon: 1 },
         feedback: {
           outcome: 'A bean burrito, made with ingredients shipped from abroad.',
-          // Copy from GDD section 9.
-          why: 'Production methods and food type can matter more than transportation distance alone. This simplified score will be checked against credible sources.',
+          // Adapted from GDD section 9.
+          why: 'What a food is and how it is produced usually matter more than how far it travelled.',
         },
       },
     ],
@@ -465,7 +468,7 @@ const scenarioList: Scenario[] = [
         followUp: 'cup',
         feedback: {
           outcome: 'You keep your money, though you feel a little left out.',
-          why: 'Not buying avoids this purchase’s impact. The small energy dip is a game abstraction, not a rule for everyone.',
+          why: 'Not buying avoids this purchase’s impact. Saying no while friends shop can still feel draining.',
         },
       },
     ],
@@ -558,7 +561,7 @@ const scenarioList: Scenario[] = [
         id: 'home-mom',
         label: 'Ask Mom for a ride',
         sprite: 'car-blue',
-        effects: { carbon: 2, setFlags: ['momPickup'] },
+        effects: { carbon: 8, setFlags: ['momPickup'] },
         followUp: 'idling',
         feedback: {
           outcome: 'Mom comes to pick you up.',
@@ -623,10 +626,10 @@ const scenarioList: Scenario[] = [
         id: 'dinner-chicken',
         label: 'Chicken stir-fry',
         sprite: 'plate',
-        effects: { carbon: 3 },
+        effects: { carbon: 2 },
         feedback: {
           outcome: 'A quick chicken stir-fry for the family.',
-          why: 'Chicken is usually modeled with a lower climate impact than beef.',
+          why: 'Chicken usually has a much lower climate impact than beef.',
         },
       },
       {
@@ -636,7 +639,7 @@ const scenarioList: Scenario[] = [
         effects: { carbon: 1 },
         feedback: {
           outcome: 'A big pot of veggie pasta.',
-          why: 'Plant-based meals often have lower climate impact in this simplified model.',
+          why: 'Plant-based meals usually have a lower climate impact than meat dishes.',
         },
       },
     ],
@@ -790,7 +793,7 @@ const scenarioList: Scenario[] = [
         effects: { energy: -5, carbon: 0 },
         feedback: {
           outcome: 'You pull on an extra blanket. It is a little chilly.',
-          why: 'Lowering the heat reduces the modeled energy use; this does not claim charging has zero impact.',
+          why: 'Turning the heat down saves more than unplugging one charger. A plugged-in charger still uses a little power, and many add up.',
         },
       },
     ],
