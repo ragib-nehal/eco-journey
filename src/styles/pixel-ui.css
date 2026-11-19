@@ -340,6 +340,19 @@
   color: var(--ink-soft);
 }
 
+.typewriter--typing {
+  cursor: pointer;
+}
+
+/* Hide the "more" arrow until the line has finished typing. */
+.dialogue__body > p.typewriter--typing:last-child::after {
+  content: none;
+}
+
+.typewriter__ghost {
+  visibility: hidden;
+}
+
 @media (max-width: 600px) {
   .dialogue {
     margin: 4px;
@@ -685,4 +698,101 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
+}
+
+/* --- High scores ------------------------------------------------------ */
+
+.scores__best {
+  margin: 0 0 8px;
+  background: var(--leaf-light);
+}
+
+.scores__name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.scores__name label {
+  font-weight: 700;
+}
+
+.scores__name input {
+  font: inherit;
+  width: 14ch;
+  padding: 4px 8px;
+  color: var(--ink);
+  background: #fff;
+  border: 0;
+  box-shadow: 0 0 0 2px var(--ink);
+}
+
+.scores__name input:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.scores__list {
+  list-style: none;
+  margin: 0 0 8px;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.scores__row {
+  display: grid;
+  grid-template-columns: 2.5ch minmax(0, 1fr) 4ch;
+  grid-template-areas:
+    'rank who eco'
+    'rank meta eco';
+  align-items: center;
+  column-gap: 10px;
+  padding: 4px 8px;
+  background: var(--paper-2);
+}
+
+.scores__row--current {
+  background: var(--amber-light);
+  box-shadow: inset 0 0 0 2px var(--amber);
+}
+
+.scores__rank {
+  grid-area: rank;
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+
+.scores__who {
+  grid-area: who;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.scores__meta {
+  grid-area: meta;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+}
+
+.scores__eco {
+  grid-area: eco;
+  justify-self: end;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--leaf);
+}
+
+.scores__clear {
+  margin-top: 8px;
+}
+
+.start__best {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 8px 0 0;
 }

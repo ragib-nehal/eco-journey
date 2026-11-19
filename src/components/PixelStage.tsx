@@ -4,6 +4,7 @@
 import { useEffect, useRef } from 'react'
 import type { SceneId } from '../game/types.ts'
 import { loadImage, sceneUrl, spriteUrl, STAGE_H, STAGE_W } from '../ui/assets.ts'
+import { prefersReducedMotion } from '../ui/motion.ts'
 
 export type Ambience = 'steam' | 'rain' | 'sparkle'
 
@@ -18,8 +19,6 @@ const INK = '#2a2238'
 const BAYER = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5]
 const FADE_MS = 360
 const FRAME_MS = 1000 / 12
-
-const prefersReducedMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false
 
 function drawBubble(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number) {
   ctx.fillStyle = INK
@@ -44,15 +43,52 @@ function drawBubble(ctx: CanvasRenderingContext2D, x: number, y: number, w: numb
   ctx.fillRect(tx + 3, y + h + 1, 1, 1)
 }
 
-function drawRain(ctx: CanvasRenderingContext2D, frame: number) {
-  ctx.fillStyle = 'rgba(176, 200, 240, 0.75)'
-  for (let i = 0; i < 90; i++) {
-    const seedX = (i * 73) % STAGE_W
-    const seedY = (i * 131) % STAGE_H
-    const x = (seedX - frame * 2 + STAGE_W * 4) % STAGE_W
-    const y = (seedY + frame * 7) % STAGE_H
-    ctx.fillRect(x, y, 1, 4)
-    ctx.fillRect(x - 1, y + 4, 1, 1)
+interface RainLayer {
+  count: number
+  color: string
+  /** Streak length in pixels. */
+  length: number
+  /** Pixels fallen per frame. */
+  speed: number
+  /** Sideways pixels per frame (wind). */
+  drift: number
+  seed: number
+}
+
+/** Far drops sit behind the speech bubble; near drops fall in front of it. */
+const RAIN_FAR: RainLayer = { count: 90, color: 'rgba(150, 175, 225, 0.55)', length: 3, speed: 4, drift: 1, seed: 17 }
+const RAIN_NEAR: RainLayer = { count: 60, color: 'rgba(205, 225, 255, 0.9)', length: 7, speed: 9, drift: 3, seed: 53 }
+
+function drawRain(ctx: CanvasRenderingContext2D, frame: number, layer: RainLayer) {
+  ctx.fillStyle = layer.color
+  // The tail trails up and to the right, back along the drop's path.
+  const step = Math.max(1, Math.round(layer.speed / layer.drift))
+  for (let i = 0; i < layer.count; i++) {
+    const seedX = (i * 73 + layer.seed * 31) % STAGE_W
+    const seedY = (i * 131 + layer.seed * 7) % STAGE_H
+    const x = (seedX - frame * layer.drift + STAGE_W * 64) % STAGE_W
+    const y = ((seedY + frame * layer.speed) % (STAGE_H + 10)) - 10
+    for (let d = 0; d < layer.length; d++) ctx.fillRect(x + Math.floor(d / step), y - d, 1, 1)
+  }
+}
+
+/** Tiny splashes popping on the wet ground. */
+function drawSplashes(ctx: CanvasRenderingContext2D, frame: number) {
+  ctx.fillStyle = 'rgba(215, 230, 255, 0.85)'
+  for (let i = 0; i < 16; i++) {
+    const phase = (frame + i * 7) % 12
+    if (phase > 3) continue
+    // Each splash moves to a new spot every cycle.
+    const cycle = Math.floor((frame + i * 7) / 12)
+    const x = (i * 97 + cycle * 53) % STAGE_W
+    const y = 150 + ((i * 29 + cycle * 11) % 26)
+    if (phase < 2) ctx.fillRect(x, y, 1, 1)
+    else {
+      ctx.fillRect(x - 2, y - 1, 1, 1)
+      ctx.fillRect(x + 2, y - 1, 1, 1)
+      ctx.fillRect(x - 1, y, 1, 1)
+      ctx.fillRect(x + 1, y, 1, 1)
+    }
   }
 }
 
@@ -127,7 +163,12 @@ export function PixelStage({ scene, sprite, ambience, label }: PixelStageProps) 
         ctx.fillStyle = INK
         ctx.fillRect(0, 0, STAGE_W, STAGE_H)
       }
-      if (ambience === 'rain') drawRain(ctx, frame)
+      if (ambience === 'rain') {
+        // A cool, damp wash, then the far rain layer behind the bubble.
+        ctx.fillStyle = 'rgba(30, 40, 80, 0.14)'
+        ctx.fillRect(0, 0, STAGE_W, STAGE_H)
+        drawRain(ctx, frame, RAIN_FAR)
+      }
       if (item) {
         const bob = reduced ? 0 : Math.round(Math.sin(frame / 4))
         drawBubble(ctx, bubble.x, bubble.y + bob, bubble.w, bubble.h)
@@ -135,6 +176,10 @@ export function PixelStage({ scene, sprite, ambience, label }: PixelStageProps) 
         const w = item.width * scale
         const h = item.height * scale
         ctx.drawImage(item, Math.round(cx - w / 2), Math.round(cy - h / 2) + bob, w, h)
+      }
+      if (ambience === 'rain') {
+        drawRain(ctx, frame, RAIN_NEAR)
+        drawSplashes(ctx, reduced ? 2 : frame)
       }
       if (ambience === 'steam') drawSteam(ctx, frame, cx, cy)
       if (ambience === 'sparkle') drawSparkle(ctx, frame, cx, cy)

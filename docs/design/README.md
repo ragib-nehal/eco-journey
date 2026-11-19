@@ -17,7 +17,7 @@ are not part of the running game.
 
 ## Fonts (`public/fonts/`)
 
-- `PixelifySans-latin.woff2` — Pixelify Sans, SIL Open Font License 1.1, downloaded from Google Fonts.
+- `VT323-latin.woff2` — VT323, SIL Open Font License 1.1, downloaded from Google Fonts.
 
 ## Reference only (`design/`)
 

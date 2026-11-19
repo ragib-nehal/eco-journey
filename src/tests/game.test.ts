@@ -130,6 +130,12 @@ describe('checkpoints', () => {
 })
 
 describe('conditional events', () => {
+  it('buying breakfast leads to the checkout bag prompt in the store scene', () => {
+    const atCheckout = proceed(choose(play(['shower-quick', 'teeth-off']), 'breakfast-buy'))
+    expect(atCheckout.queue[0]).toBe('bag')
+    expect(SCENARIOS.bag.scene).toBe('store')
+  })
+
   it('refill is unavailable unless the reusable bottle was packed', () => {
     const skipped = play([...MORNING_QUICK_BUS, 'lunch-chicken', 'cleanup-sort', 'bathroom-towels'])
     const refill = getAvailability(skipped, option('drink', 'drink-refill'))

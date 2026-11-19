@@ -1,8 +1,9 @@
-/* Pixelify Sans: SIL Open Font License 1.1, self-hosted from Google Fonts. */
+/* VT323: SIL Open Font License 1.1, self-hosted from Google Fonts.
+   Chosen for clear, unambiguous digits and symbols (e.g. "$25"). */
 @font-face {
-  font-family: 'Pixelify Sans';
-  src: url('/fonts/PixelifySans-latin.woff2') format('woff2');
-  font-weight: 400 700;
+  font-family: 'VT323';
+  src: url('/fonts/VT323-latin.woff2') format('woff2');
+  font-weight: 400;
   font-display: swap;
 }
 
@@ -25,8 +26,11 @@
   --px: 4px;
 
   color-scheme: light;
-  font-family: 'Pixelify Sans', ui-monospace, 'Cascadia Mono', Consolas, monospace;
-  font-size: 18px;
+  font-family: 'VT323', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+  /* VT323 glyphs are small for their em size, so the base size is larger. */
+  font-size: 22px;
+  /* VT323 has one weight; a browser-faked bold smears the pixels. */
+  font-synthesis: none;
   line-height: 1.45;
   color: var(--ink);
   background: var(--night);
@@ -91,7 +95,7 @@ button {
 
 @media (max-width: 720px) {
   :root {
-    font-size: 16px;
+    font-size: 20px;
   }
 
   #root {

@@ -53,6 +53,17 @@ npm run build   # type-check and build to dist/
 
 Play with the mouse, touch, or keyboard: Tab moves between choices, 1–5 picks
 a choice, and Enter continues.
+Click a dialogue line to skip its typing animation.
+
+Each finished day is saved to a local top-10 leaderboard ("Your best days" on
+the results screen). Scores and the player name live only in the browser's
+`localStorage`; nothing is sent to a server, and clearing site data removes
+them.
+
+`npm ci` may report a few vulnerabilities in `picomatch`. They are in the
+development tools (Vite and Vitest), not in the game that players load, and npm
+has no patched version yet. Do not run `npm audit fix --force`: it upgrades
+packages across breaking versions and can stop the project from running.
 
 On Windows, run the commands from a path that starts with an upper-case drive
 letter (`C:\...`). Some terminals open the project as `c:\...`, which makes
@@ -63,7 +74,7 @@ Vitest load itself twice and fail with
 
 The game draws a 320×180 pixel stage on a canvas and scales it up with
 nearest-neighbour sampling. The UI uses stepped pixel borders and the
-self-hosted Pixelify Sans font.
+self-hosted VT323 font.
 
 The low-resolution art in `public/assets/pixel/` is generated from the
 illustrated assets in `public/assets/` by a dependency-free script:
@@ -95,11 +106,12 @@ workflow.
 
 ## Documentation
 
-- [Game Design Document](docs/game-design-document.md)
+- [Game Design Document](docs/planning/game-design-document.md)
+- [Implementation Plan](docs/planning/implementation-plan.md)
 - [Architecture](docs/architecture.md)
 - [Technology Stack Decision](docs/tech-stack-decision.md)
 - [Meeting Notes Template](docs/meeting-notes/README.md)
-- [Design References](design/README.md)
+- [Design References](docs/design/README.md)
 
 ## Prototype layout
 
@@ -117,5 +129,5 @@ Source modules:
 
 ## Credits
 
-- Pixelify Sans font: SIL Open Font License 1.1, self-hosted from Google Fonts
+- VT323 font: SIL Open Font License 1.1, self-hosted from Google Fonts
   (`public/fonts/`).
