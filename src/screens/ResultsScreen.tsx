@@ -3,6 +3,7 @@ import { HighScoresPanel } from '../components/HighScoresPanel.tsx'
 import { PixelStage } from '../components/PixelStage.tsx'
 import { PixelSprite } from '../components/PixelSprite.tsx'
 import { METRICS, type Metric } from '../game/ecoScore.ts'
+import { sourcesFor } from '../game/evidence.ts'
 import { formatMoney } from '../game/format.ts'
 import { GOALS } from '../game/initialState.ts'
 import { buildReport } from '../game/report.ts'
@@ -27,6 +28,7 @@ export function ResultsScreen({ state, onRestart }: ResultsScreenProps) {
     headingRef.current?.focus()
   }, [])
   const { ecoScore, economy } = report
+  const sources = useMemo(() => sourcesFor(state.history.map((r) => r.optionId)), [state.history])
 
   return (
     <main className="results">
@@ -165,6 +167,22 @@ export function ResultsScreen({ state, onRestart }: ResultsScreenProps) {
         </section>
       </div>
 
+      {sources.length > 0 && (
+        <section className="px-panel" aria-labelledby="r-sources">
+          <h2 id="r-sources" className="panel-title">Sources for today&apos;s facts</h2>
+          <ul className="sources">
+            {sources.map((s) => (
+              <li key={s.id}>
+                {s.publisher}, <cite>{s.title}</cite> ({s.year}).{' '}
+                <a href={s.url} target="_blank" rel="noopener noreferrer">
+                  {s.url}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
       <section className="px-panel reflection" aria-labelledby="r-reflect">
         <h2 id="r-reflect" className="panel-title">Reflection</h2>
         <p>
@@ -173,7 +191,7 @@ export function ResultsScreen({ state, onRestart }: ResultsScreenProps) {
           run with a different strategy and compare.
         </p>
         <p className="note">
-          All impact values are simplified game points awaiting source review, not real-world measurements.
+          Impact values are simplified game points, not real-world measurements.
         </p>
         <button type="button" className="px-button px-button--primary" onClick={onRestart}>
           Play again <span aria-hidden="true">↻</span>

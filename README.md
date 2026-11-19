@@ -39,6 +39,8 @@ and an end-of-day report with raw Carbon, Water, and Waste totals and a
 relative Eco Score. Scenario data, rules, state, and React screens are separate
 modules under `src/`. Most feedback explanations are draft copy awaiting
 content and source review (see the header of `src/game/scenarios.ts`).
+Researched facts and their sources for each decision live in
+`docs/research/decision-evidence.json` (see `docs/research/README.md`).
 
 ## Running the game
 

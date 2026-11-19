@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { getEvidence, getSource } from '../game/evidence.ts'
 import { formatMoney, formatTime, signed } from '../game/format.ts'
 import type { DecisionRecord, Option } from '../game/types.ts'
 import { PixelSprite } from './PixelSprite.tsx'
@@ -33,6 +34,12 @@ export function FeedbackPanel({ option, record, onContinue }: FeedbackPanelProps
   if (d('water')) changes.push({ sprite: 'water', text: `Water ${signed(d('water'))} pts` })
   if (d('waste')) changes.push({ sprite: 'trash', text: `Waste ${signed(d('waste'))} pts` })
   if (changes.length === 0) changes.push({ sprite: 'check', text: 'No modeled changes' })
+  const evidence = getEvidence(option.id)
+  const source = evidence && getSource(evidence.sourceId)
+  // A sourced fact replaces the disclaimer; options without one keep it until researched.
+  const notes: string[] = []
+  if (!source) notes.push('Points are simplified game values, not measurements. Explanations are pending source review.')
+  if (option.unmodeled) notes.push(`Not yet modeled: ${option.unmodeled}`)
 
   return (
     <div className="feedback" aria-live="polite">
@@ -49,13 +56,20 @@ export function FeedbackPanel({ option, record, onContinue }: FeedbackPanelProps
           </li>
         ))}
       </ul>
-      <p className="feedback__why">
-        <strong>Why it matters:</strong> {option.feedback.why}
-      </p>
-      <p className="note">
-        Points are simplified game values, not measurements. Explanations are pending source review.
-        {option.unmodeled && ` Not yet modeled: ${option.unmodeled}`}
-      </p>
+      <div className="feedback__why">
+        <p>
+          <strong>Why it matters:</strong> {option.feedback.why}
+        </p>
+        {evidence && source && (
+          <figure className="feedback__evidence">
+            <blockquote>{evidence.fact}</blockquote>
+            <figcaption>
+              Source: {source.publisher}, {source.year}
+            </figcaption>
+          </figure>
+        )}
+      </div>
+      {notes.length > 0 && <p className="note">{notes.join(' ')}</p>}
       <ContinueButton onContinue={onContinue} />
     </div>
   )

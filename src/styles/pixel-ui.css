@@ -450,6 +450,47 @@
   box-shadow: 0 0 0 2px var(--ink);
 }
 
+.feedback__why p {
+  margin: 0;
+}
+
+.feedback__evidence {
+  margin: 8px 0 2px;
+  padding: 6px 10px;
+  background: var(--paper);
+  box-shadow: 0 0 0 2px var(--ink-soft);
+}
+
+.feedback__evidence blockquote {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.feedback__evidence blockquote::before {
+  content: '▸ ' / '';
+  color: var(--leaf);
+}
+
+.feedback__evidence figcaption {
+  margin-top: 2px;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.sources {
+  margin: 0;
+  padding-left: 1.2em;
+}
+
+.sources li + li {
+  margin-top: 4px;
+}
+
+.sources a {
+  color: var(--sky);
+  overflow-wrap: anywhere;
+}
+
 .continue {
   align-self: flex-end;
 }

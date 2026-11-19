@@ -1,0 +1,32 @@
+{
+  "sources": {
+    "epa-watersense-showerheads": {
+      "publisher": "U.S. EPA WaterSense",
+      "title": "Showerheads",
+      "year": 2026,
+      "url": "https://www.epa.gov/watersense/showerheads",
+      "accessed": "2026-11-19"
+    },
+    "epa-watersense-start-saving": {
+      "publisher": "U.S. EPA WaterSense",
+      "title": "Start Saving",
+      "year": 2026,
+      "url": "https://www.epa.gov/watersense/start-saving",
+      "accessed": "2026-11-19"
+    }
+  },
+  "evidence": {
+    "shower-quick": {
+      "fact": "Standard showerheads use 2.5 gallons of water per minute. Using less hot water also cuts the energy needed to heat it.",
+      "sourceId": "epa-watersense-showerheads",
+      "status": "draft",
+      "notes": "Page last updated March 3, 2026. 'Shower With Power': \"standard showerheads use 2.5 gallons of water per minute (gpm)\". 'WaterSense Savings': \"these water savings will reduce demands on water heaters, they will also save energy.\""
+    },
+    "teeth-off": {
+      "fact": "The EPA advises turning off the tap while brushing. A faucet running for 5 minutes uses about as much energy as a 60-watt bulb left on for 9 hours.",
+      "sourceId": "epa-watersense-start-saving",
+      "status": "draft",
+      "notes": "Page last updated May 8, 2026. 'Save Indoors': \"Turn off the tap while shaving or brushing teeth.\" 'Save Energy': \"letting your faucet run for five minutes uses about as much energy as letting a 60-watt light bulb run for 9 hours.\" The page gives no gallons-saved figure for brushing."
+    }
+  }
+}

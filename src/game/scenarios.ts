@@ -8,6 +8,8 @@
 // Every other line is DRAFT copy written for the prototype and still needs
 // content/research review (with a source attached) before it is final. No line
 // states a measured quantity. The UI labels all explanations as pending review.
+// Researched, cited facts for each option live in
+// docs/research/decision-evidence.json, keyed by option id (see evidence.ts).
 import type { Option, Scenario, ScenarioId } from './types.ts'
 
 export const time = (hours: number, minutes = 0) => hours * 60 + minutes
