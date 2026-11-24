@@ -2,10 +2,11 @@ import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from 'react'
 import { HighScoresPanel } from '../components/HighScoresPanel.tsx'
 import { PixelSprite } from '../components/PixelSprite.tsx'
 import { METRICS, type Metric } from '../game/ecoScore.ts'
-import { sourcesFor } from '../game/evidence.ts'
+import { getEvidence, getSource, sourcesFor } from '../game/evidence.ts'
 import { formatMoney } from '../game/format.ts'
 import { GOALS } from '../game/initialState.ts'
 import { buildReport } from '../game/report.ts'
+import { getOption } from '../game/scenarios.ts'
 import type { GameState } from '../game/types.ts'
 import { energyAtPractice, goalExplanation, STATUS_LABEL, STATUS_SPRITE } from '../ui/goalText.ts'
 
@@ -180,6 +181,51 @@ export function ResultsScreen({ state, onRestart }: ResultsScreenProps) {
       </div>
 
       <div {...panelProps('highlights')}>
+        <section className="px-panel reflection" aria-labelledby="r-reflect">
+          <h2 id="r-reflect" className="panel-title">Reflection</h2>
+          <p>
+            Personal goals and environmental impact are separate stories: meeting every goal does not make a day
+            sustainable, and a low-impact day does not guarantee your goals. Which trade-offs felt worth it? Try another
+            run with a different strategy and compare.
+          </p>
+          <p className="note">
+            Impact values are simplified game points, not real-world measurements.
+          </p>
+        </section>
+
+        <section className="px-panel keep-in-mind" aria-labelledby="r-keep">
+          <h2 id="r-keep" className="panel-title">Things to keep in mind</h2>
+          {report.keepInMind.length ? (
+            <ul className="keep-list">
+              {report.keepInMind.map((h) => {
+                const evidence = getEvidence(h.record.optionId)
+                const source = evidence && getSource(evidence.sourceId)
+                const why = getOption(h.record.scenarioId, h.record.optionId)?.feedback.why
+                return (
+                  <li key={h.record.optionId}>
+                    <strong>{h.label}</strong> <span className="muted">({h.title})</span>
+                    {evidence && source ? (
+                      <figure className="feedback__evidence">
+                        <blockquote>{evidence.fact}</blockquote>
+                        <figcaption>
+                          Source:{' '}
+                          <a href={source.url} target="_blank" rel="noopener noreferrer">
+                            {source.publisher}, {source.year}
+                          </a>
+                        </figcaption>
+                      </figure>
+                    ) : (
+                      why && <p className="keep-list__why">{why}</p>
+                    )}
+                  </li>
+                )
+              })}
+            </ul>
+          ) : (
+            <p>Every choice you made was the lowest-impact option you had.</p>
+          )}
+        </section>
+
         <section className="px-panel" aria-labelledby="r-high">
           <h2 id="r-high" className="panel-title">Decision highlights</h2>
           <h3 className="sub-title">Biggest contributors</h3>
@@ -253,17 +299,6 @@ export function ResultsScreen({ state, onRestart }: ResultsScreenProps) {
           </section>
         )}
 
-        <section className="px-panel reflection" aria-labelledby="r-reflect">
-          <h2 id="r-reflect" className="panel-title">Reflection</h2>
-          <p>
-            Personal goals and environmental impact are separate stories: meeting every goal does not make a day
-            sustainable, and a low-impact day does not guarantee your goals. Which trade-offs felt worth it? Try another
-            run with a different strategy and compare.
-          </p>
-          <p className="note">
-            Impact values are simplified game points, not real-world measurements.
-          </p>
-        </section>
       </div>
 
       <div {...panelProps('scores')}>

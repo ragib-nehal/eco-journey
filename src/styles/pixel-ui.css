@@ -548,12 +548,52 @@
 
 .feedback__why {
   padding: 6px 10px;
-  background: var(--leaf-light);
   box-shadow: 0 0 0 2px var(--ink);
 }
 
 .feedback__why p {
   margin: 0;
+}
+
+/* Background follows how the choice compared with the other options. */
+.feedback__why--low {
+  background: var(--leaf-light);
+}
+
+.feedback__why--medium {
+  background: var(--amber-light);
+}
+
+.feedback__why--high {
+  background: var(--coral-light);
+}
+
+.feedback__why--none {
+  background: var(--paper-2);
+}
+
+.feedback__why .impact-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+  padding: 2px 8px;
+  font-weight: 700;
+  color: #fff;
+  box-shadow: 0 0 0 2px var(--ink);
+}
+
+.impact-label--low {
+  background: #2f6e45;
+}
+
+.impact-label--medium {
+  background: var(--amber);
+  color: var(--ink);
+}
+
+.impact-label--high {
+  background: #a83a2f;
 }
 
 .feedback__evidence {
@@ -852,8 +892,13 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  /* Reflection spans the top row; the other panels fill two columns below. */
   .results__panel--highlights {
-    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  }
+
+  .results__panel--highlights .reflection {
+    grid-column: 1 / -1;
   }
 
   .results__panel--scores {
@@ -977,6 +1022,22 @@
 
 .econ dd {
   margin: 0;
+}
+
+.keep-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.keep-list .feedback__evidence {
+  margin-top: 4px;
+}
+
+.keep-list__why {
+  margin: 4px 0 0;
 }
 
 .reflection {

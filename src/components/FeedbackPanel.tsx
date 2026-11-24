@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { getEvidence, getSource } from '../game/evidence.ts'
 import { formatMoney, formatTime, signed } from '../game/format.ts'
+import { impactTier, type ImpactTier } from '../game/report.ts'
 import type { DecisionRecord, Option } from '../game/types.ts'
 import { prefersReducedMotion } from '../ui/motion.ts'
 import { PixelSprite } from './PixelSprite.tsx'
@@ -40,6 +41,13 @@ export function ContinueButton({ onContinue, label = 'Continue' }: { onContinue:
   )
 }
 
+// Each tier pairs a color with a symbol and text so it reads without color.
+const TIER_LABEL: Record<ImpactTier, { symbol: string; text: string }> = {
+  low: { symbol: '▼', text: 'Lowest impact of your options' },
+  medium: { symbol: '◆', text: 'Medium impact compared with your options' },
+  high: { symbol: '▲', text: 'Highest impact of your options' },
+}
+
 export function FeedbackPanel({ option, record, onContinue }: FeedbackPanelProps) {
   const d = (key: keyof DecisionRecord['after']) => record.after[key] - record.before[key]
   const changes: { sprite: string; text: string }[] = []
@@ -54,6 +62,7 @@ export function FeedbackPanel({ option, record, onContinue }: FeedbackPanelProps
   if (changes.length === 0) changes.push({ sprite: 'check', text: 'No modeled changes' })
   const evidence = getEvidence(option.id)
   const source = evidence && getSource(evidence.sourceId)
+  const tier = impactTier(record)
   // Review status and `unmodeled` notes are for the team only and are not shown
   // to players. The start and results screens explain that points are
   // simplified game values.
@@ -73,7 +82,12 @@ export function FeedbackPanel({ option, record, onContinue }: FeedbackPanelProps
           </li>
         ))}
       </ul>
-      <div className="feedback__why">
+      <div className={`feedback__why feedback__why--${tier ?? 'none'}`}>
+        {tier && (
+          <p className={`impact-label impact-label--${tier}`}>
+            <span aria-hidden="true">{TIER_LABEL[tier].symbol}</span> {TIER_LABEL[tier].text}
+          </p>
+        )}
         <p>
           <strong>Why it matters:</strong> {option.feedback.why}
         </p>

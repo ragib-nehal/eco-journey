@@ -24,6 +24,8 @@ export interface DayReport {
   contributors: Highlight[]
   /** Up to 2 choices where the player took the lowest-impact option available. */
   tradeOffs: Highlight[]
+  /** Up to 5 highest-impact choices where a lower-impact option was available. */
+  keepInMind: Highlight[]
   economy: {
     startCents: number
     endCents: number
@@ -32,6 +34,19 @@ export interface DayReport {
     startEnergy: number
     endEnergy: number
   }
+}
+
+export type ImpactTier = 'low' | 'medium' | 'high'
+
+/**
+ * How a choice compares with the other options enabled at the time. Null when
+ * every enabled option had the same impact, so no comparison applies.
+ */
+export function impactTier(record: DecisionRecord): ImpactTier | null {
+  if (record.lowestImpact && record.impact === record.highestEnabledImpact) return null
+  if (record.lowestImpact) return 'low'
+  if (record.impact === record.highestEnabledImpact) return 'high'
+  return 'medium'
 }
 
 function toHighlight(record: DecisionRecord): Highlight {
@@ -57,6 +72,12 @@ export function buildReport(state: GameState): DayReport {
     .slice(0, 2)
     .map(toHighlight)
 
+  const keepInMind = state.history
+    .filter((r) => !r.lowestImpact)
+    .sort((a, b) => b.impact - a.impact || b.highestEnabledImpact - b.impact - (a.highestEnabledImpact - a.impact))
+    .slice(0, 5)
+    .map(toHighlight)
+
   const spending = state.history
     .map((r) => ({ label: toHighlight(r).label, cents: r.before.moneyCents - r.after.moneyCents + r.payoutCents }))
     .filter((s) => s.cents > 0)
@@ -70,6 +91,7 @@ export function buildReport(state: GameState): DayReport {
     goalsCompleted: goals.filter((g) => g.status === 'COMPLETED').length,
     contributors,
     tradeOffs,
+    keepInMind,
     economy: {
       startCents: START_MONEY_CENTS,
       endCents: state.moneyCents,
