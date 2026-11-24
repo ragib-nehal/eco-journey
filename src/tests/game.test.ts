@@ -3,10 +3,10 @@ import { computeBounds, computeEcoScore, metricScore } from '../game/ecoScore.ts
 import { formatMoney, formatTime } from '../game/format.ts'
 import { createInitialState } from '../game/initialState.ts'
 import { gameReducer } from '../game/reducer.ts'
-import { buildReport } from '../game/report.ts'
+import { buildReport, impactTier } from '../game/report.ts'
 import { evaluateGoal, getAvailability } from '../game/rules.ts'
 import { DAY_ORDER, getOption, SCENARIOS, time } from '../game/scenarios.ts'
-import type { GameState, ScenarioId } from '../game/types.ts'
+import type { DecisionRecord, GameState, ScenarioId } from '../game/types.ts'
 
 const start = () => gameReducer(createInitialState(), { type: 'START' })
 
@@ -302,6 +302,38 @@ describe('report', () => {
     expect(report.economy.spending.reduce((sum, s) => sum + s.cents, 0)).toBe(2500 + 500 - state.moneyCents)
     expect(report.goals.find((g) => g.id === 'test')?.status).toBe('MISSED')
     expect(report.goalsCompleted).toBe(2)
+  })
+
+  it('lists up to five higher-impact choices to keep in mind', () => {
+    const state = play(['shower-long', 'teeth-off', 'breakfast-buy', 'bag-backpack', 'commute-bus', 'lunch-beef', 'cleanup-sort', 'bathroom-towels', 'drink-plastic', 'mall-nothing', 'cup-trash', 'home-split', 'dinner-veggie', 'chore-accept', 'dishes-full', 'laundry-cold', 'bed-heat'])
+    const { keepInMind } = buildReport(state)
+    expect(keepInMind.length).toBeGreaterThan(0)
+    expect(keepInMind.length).toBeLessThanOrEqual(5)
+    expect(keepInMind.every((h) => !h.record.lowestImpact)).toBe(true)
+    const impacts = keepInMind.map((h) => h.record.impact)
+    expect(impacts).toEqual([...impacts].sort((a, b) => b - a))
+    expect(keepInMind[0].record.optionId).toBe('lunch-beef')
+  })
+
+  it('leaves out choices that were already the lowest-impact option', () => {
+    const state = play(MORNING_QUICK_BUS)
+    const ids = buildReport(state).keepInMind.map((h) => h.record.optionId)
+    for (const r of state.history.filter((r) => r.lowestImpact)) expect(ids).not.toContain(r.optionId)
+  })
+})
+
+describe('impactTier', () => {
+  const record = (impact: number, lowestImpact: boolean, highestEnabledImpact: number) =>
+    ({ impact, lowestImpact, highestEnabledImpact }) as DecisionRecord
+
+  it('compares a choice with the other options the player had', () => {
+    expect(impactTier(record(0, true, 4))).toBe('low')
+    expect(impactTier(record(2, false, 4))).toBe('medium')
+    expect(impactTier(record(4, false, 4))).toBe('high')
+  })
+
+  it('has no tier when every option had the same impact', () => {
+    expect(impactTier(record(1, true, 1))).toBeNull()
   })
 })
 

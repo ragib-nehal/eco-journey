@@ -548,12 +548,52 @@
 
 .feedback__why {
   padding: 6px 10px;
-  background: var(--leaf-light);
   box-shadow: 0 0 0 2px var(--ink);
 }
 
 .feedback__why p {
   margin: 0;
+}
+
+/* Background follows how the choice compared with the other options. */
+.feedback__why--low {
+  background: var(--leaf-light);
+}
+
+.feedback__why--medium {
+  background: var(--amber-light);
+}
+
+.feedback__why--high {
+  background: var(--coral-light);
+}
+
+.feedback__why--none {
+  background: var(--paper-2);
+}
+
+.feedback__why .impact-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+  padding: 2px 8px;
+  font-weight: 700;
+  color: #fff;
+  box-shadow: 0 0 0 2px var(--ink);
+}
+
+.impact-label--low {
+  background: #2f6e45;
+}
+
+.impact-label--medium {
+  background: var(--amber);
+  color: var(--ink);
+}
+
+.impact-label--high {
+  background: #a83a2f;
 }
 
 .feedback__evidence {
@@ -588,7 +628,8 @@
   margin-top: 4px;
 }
 
-.sources a {
+.sources a,
+.keep-list a {
   color: var(--sky);
   overflow-wrap: anywhere;
 }
@@ -852,8 +893,24 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  /* Reflection spans the top row; the other panels fill two columns below. */
   .results__panel--highlights {
-    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  }
+
+  .results__panel--highlights .reflection,
+  .results__panel--highlights .results__sources {
+    grid-column: 1 / -1;
+  }
+
+  /* Long URLs read better across two columns of the full width. */
+  .results__sources .sources {
+    columns: 2;
+    column-gap: 32px;
+  }
+
+  .results__sources .sources li {
+    break-inside: avoid;
   }
 
   .results__panel--scores {
@@ -977,6 +1034,29 @@
 
 .econ dd {
   margin: 0;
+}
+
+.keep-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.keep-list .feedback__evidence {
+  margin-top: 4px;
+}
+
+.keep-list__why {
+  margin: 4px 0 0;
+}
+
+/* Decision highlights and Money and energy share one column. */
+.results__stack {
+  display: grid;
+  gap: 14px;
+  align-content: start;
 }
 
 .reflection {
