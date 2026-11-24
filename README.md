@@ -53,6 +53,17 @@ npm test        # run the game-logic tests
 npm run build   # type-check and build to dist/
 ```
 
+The dev server opens the game at `/eco-journey/` (for example
+`http://localhost:5173/eco-journey/`), the same path it uses online.
+
+### Playing online
+
+The live game is at **https://ragib-nehal.github.io/eco-journey/**. Every merge
+into `main` runs the tests, builds the game, and publishes it with the
+`Deploy to GitHub Pages` workflow (`.github/workflows/deploy-pages.yml`). If a
+test fails, the live game stays on the previous version. A repo admin turns
+this on once under Settings → Pages → Source: GitHub Actions.
+
 Play with the mouse, touch, or keyboard: Tab moves between choices, 1–5 picks
 a choice, and Enter continues.
 Click a dialogue line to skip its typing animation.
