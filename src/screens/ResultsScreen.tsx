@@ -226,65 +226,67 @@ export function ResultsScreen({ state, onRestart }: ResultsScreenProps) {
           )}
         </section>
 
-        <section className="px-panel" aria-labelledby="r-high">
-          <h2 id="r-high" className="panel-title">Decision highlights</h2>
-          <h3 className="sub-title">Biggest contributors</h3>
-          {report.contributors.length ? (
-            <ul className="highlights">
-              {report.contributors.map((h) => (
-                <li key={h.record.optionId}>
-                  <strong>{h.label}</strong> <span className="muted">({h.title})</span>: +{h.record.impact} pts
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>None of your choices added impact points.</p>
-          )}
-          <h3 className="sub-title">Helpful trade-offs</h3>
-          {report.tradeOffs.length ? (
-            <ul className="highlights">
-              {report.tradeOffs.map((h) => (
-                <li key={h.record.optionId}>
-                  <strong>{h.label}</strong> <span className="muted">({h.title})</span>: the lowest-impact option you
-                  had, versus up to +{h.record.highestEnabledImpact} pts
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>No lowest-impact picks this time. Try a different strategy on your next run.</p>
-          )}
-        </section>
-
-        <section className="px-panel" aria-labelledby="r-econ">
-          <h2 id="r-econ" className="panel-title">Money and energy</h2>
-          <dl className="econ">
-            <dt>Money</dt>
-            <dd>
-              {formatMoney(economy.startCents)} → <strong>{formatMoney(economy.endCents)}</strong>
-            </dd>
-            <dt>Chore income</dt>
-            <dd>{formatMoney(economy.choreIncomeCents)}</dd>
-            <dt>Energy</dt>
-            <dd>
-              {economy.startEnergy} → <strong>{economy.endEnergy}</strong>
-            </dd>
-          </dl>
-          {economy.spending.length > 0 && (
-            <>
-              <h3 className="sub-title">Spending</h3>
+        <div className="results__stack">
+          <section className="px-panel" aria-labelledby="r-high">
+            <h2 id="r-high" className="panel-title">Decision highlights</h2>
+            <h3 className="sub-title">Biggest contributors</h3>
+            {report.contributors.length ? (
               <ul className="highlights">
-                {economy.spending.map((s, i) => (
-                  <li key={`${s.label}-${i}`}>
-                    {s.label}: {formatMoney(s.cents)}
+                {report.contributors.map((h) => (
+                  <li key={h.record.optionId}>
+                    <strong>{h.label}</strong> <span className="muted">({h.title})</span>: +{h.record.impact} pts
                   </li>
                 ))}
               </ul>
-            </>
-          )}
-        </section>
+            ) : (
+              <p>None of your choices added impact points.</p>
+            )}
+            <h3 className="sub-title">Helpful trade-offs</h3>
+            {report.tradeOffs.length ? (
+              <ul className="highlights">
+                {report.tradeOffs.map((h) => (
+                  <li key={h.record.optionId}>
+                    <strong>{h.label}</strong> <span className="muted">({h.title})</span>: the lowest-impact option you
+                    had, versus up to +{h.record.highestEnabledImpact} pts
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>No lowest-impact picks this time. Try a different strategy on your next run.</p>
+            )}
+          </section>
+
+          <section className="px-panel" aria-labelledby="r-econ">
+            <h2 id="r-econ" className="panel-title">Money and energy</h2>
+            <dl className="econ">
+              <dt>Money</dt>
+              <dd>
+                {formatMoney(economy.startCents)} → <strong>{formatMoney(economy.endCents)}</strong>
+              </dd>
+              <dt>Chore income</dt>
+              <dd>{formatMoney(economy.choreIncomeCents)}</dd>
+              <dt>Energy</dt>
+              <dd>
+                {economy.startEnergy} → <strong>{economy.endEnergy}</strong>
+              </dd>
+            </dl>
+            {economy.spending.length > 0 && (
+              <>
+                <h3 className="sub-title">Spending</h3>
+                <ul className="highlights">
+                  {economy.spending.map((s, i) => (
+                    <li key={`${s.label}-${i}`}>
+                      {s.label}: {formatMoney(s.cents)}
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
+          </section>
+        </div>
 
         {sources.length > 0 && (
-          <section className="px-panel" aria-labelledby="r-sources">
+          <section className="px-panel results__sources" aria-labelledby="r-sources">
             <h2 id="r-sources" className="panel-title">Sources for today&apos;s facts</h2>
             <ul className="sources">
               {sources.map((s) => (
